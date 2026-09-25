@@ -1,0 +1,38 @@
+@use 'styles/tokens' as *;
+
+.ap-hero {
+  padding-block: 2.6rem 1.6rem;
+  background:
+    radial-gradient(45% 90% at 85% 0%, rgba(255, 110, 199, 0.12), transparent 60%),
+    linear-gradient(180deg, #f6f3ff, $il-mist);
+}
+
+.ap-avatar { box-shadow: 0 0 0 5px #fff, 0 0 0 7px rgba(124, 92, 255, 0.35), $il-shadow; }
+.ap-name { font-family: $il-font-display; font-weight: 800; font-size: clamp(1.6rem, 4.5vw, 2.2rem); margin: 0; }
+.ap-role { color: $il-primary-deep; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.ap-bio { color: $il-ink-soft; max-width: 52ch; font-size: 0.95rem; }
+
+.ap-stats { border-top: 1px dashed $il-line; padding-top: 1.4rem; }
+.ap-stat {
+  strong { display: block; font-family: $il-font-display; font-size: 1.3rem; }
+  span { font-size: 0.78rem; color: $il-ink-soft; font-weight: 600; }
+}
+
+.ap-feed { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; padding: 1rem; pointer-events: none;
+  &__card { pointer-events: auto; width: min(440px, 100%); background: #fff; border-radius: $il-radius-lg; padding: 1.4rem; box-shadow: $il-shadow-lg; position: relative; z-index: 81; }
+  &__item { display: grid; grid-template-columns: 40px 1fr; gap: 0.8rem; align-items: start; padding: 0.7rem 0; border-bottom: 1px solid #f1edfa; font-size: 0.9rem;
+    small { grid-column: 2; color: $il-ink-soft; } }
+  &__icon { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: rgba(124, 92, 255, 0.1); color: $il-primary-deep;
+    &.is-accent { background: $il-gradient-brand; color: #fff; } }
+  &__note { font-size: 0.8rem; color: $il-ink-soft; margin: 1rem 0 0; }
+}
+
+.r-scrim { position: fixed; inset: 0; background: rgba(15, 10, 30, 0.45); z-index: 75; }
+
+.ap-cta {
+  background: #fff;
+  border: 1px solid $il-line;
+  border-radius: $il-radius-xl;
+  padding: 2.6rem 1.4rem;
+  box-shadow: $il-shadow-sm;
+}

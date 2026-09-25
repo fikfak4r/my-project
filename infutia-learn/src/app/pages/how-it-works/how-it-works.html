@@ -1,0 +1,44 @@
+<section class="hiw-hero">
+  <div class="container text-center">
+    <span class="il-eyebrow"><i class="bi bi-lightning-charge-fill"></i> Infutia Markdown</span>
+    <h1 class="il-title mx-auto">Type it. See it shine — <span class="il-grad-text">live.</span></h1>
+    <p class="il-lead mx-auto">Edit the sample below and watch it transform into the exact reading
+      experience your future readers will fall in love with.</p>
+  </div>
+</section>
+
+<section class="container il-page">
+  <div class="hiw-lab il-reveal">
+    <div class="hiw-lab__pane hiw-lab__pane--code">
+      <div class="hiw-lab__bar"><i class="bi bi-pencil-square me-2"></i> Your manuscript</div>
+      <textarea [(ngModel)]="source" spellcheck="false" aria-label="Markdown editor"></textarea>
+    </div>
+    <div class="hiw-lab__pane hiw-lab__pane--preview">
+      <div class="hiw-lab__bar hiw-lab__bar--right"><i class="bi bi-eye me-2"></i> Reader preview
+        <a routerLink="/read/demo" class="hiw-lab__open"><i class="bi bi-box-arrow-up-right"></i> Open full reader</a>
+      </div>
+      <article class="il-md p-4" data-theme="light" [innerHTML]="rendered()"></article>
+    </div>
+  </div>
+</section>
+
+<section class="container il-section">
+  <div class="text-center mb-5 il-reveal">
+    <span class="il-eyebrow"><i class="bi bi-question-circle"></i> Straight answers</span>
+    <h2 class="il-title">Questions authors ask us</h2>
+  </div>
+  <div class="hiw-faq mx-auto il-reveal">
+    @for (f of faqs; track f.q; let i = $index) {
+      <div class="hiw-faq__item" [class.is-open]="openFaq() === i">
+        <button (click)="openFaq.set(openFaq() === i ? -1 : i)">
+          <span>{{ f.q }}</span>
+          <i class="bi" [class.bi-dash]="openFaq() === i" [class.bi-plus]="openFaq() !== i"></i>
+        </button>
+        @if (openFaq() === i) { <p>{{ f.a }}</p> }
+      </div>
+    }
+  </div>
+  <div class="text-center mt-5 il-reveal">
+    <a class="btn btn-il-primary btn-il-primary--lg" routerLink="/become-author"><i class="bi bi-feather me-2"></i>Open my Markdown Studio</a>
+  </div>
+</section>

@@ -1,0 +1,104 @@
+@use 'styles/tokens' as *;
+
+.pd-hero { padding-block: 2.5rem 1rem; background: linear-gradient(180deg, #f6f3ff, $il-mist); }
+
+.pd-crumb {
+  font-size: 0.85rem;
+  color: $il-ink-soft;
+  a { color: $il-primary-deep; text-decoration: none; font-weight: 700; }
+  i { font-size: 0.7rem; margin: 0 0.4rem; opacity: 0.5; }
+}
+
+.pd-cover-col .pd-cover { max-width: 340px; margin-inline: auto; box-shadow: $il-shadow-lg; aspect-ratio: 3/4; }
+
+.pd-meta {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: $il-ink-soft;
+  i { color: $il-gold; }
+  &:nth-child(3) i, &:nth-child(4) i { color: $il-primary; }
+}
+
+.pd-buy {
+  margin-top: 2rem;
+  background: #fff;
+  border: 1px solid $il-line;
+  border-radius: $il-radius-lg;
+  padding: 1.4rem 1.5rem;
+  box-shadow: $il-shadow-sm;
+
+  &__note { font-size: 0.82rem; color: #0d9488; font-weight: 600; }
+}
+
+.pd-price {
+  font-family: $il-font-display;
+  font-weight: 800;
+  font-size: 1.9rem;
+  color: $il-ink;
+}
+
+.preview-card {
+  border: 1px solid $il-line;
+  border-radius: $il-radius-lg;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: $il-shadow-sm;
+
+  &__bar {
+    padding: 0.8rem 1.3rem;
+    font-weight: 800;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: $il-primary-deep;
+    background: rgba(124, 92, 255, 0.07);
+    border-bottom: 1px solid $il-line;
+  }
+}
+
+.toc-card, .engage-card {
+  background: #fff;
+  border: 1px solid $il-line;
+  border-radius: $il-radius-lg;
+  padding: 1.4rem 1.3rem;
+  box-shadow: $il-shadow-sm;
+
+  h5 { font-family: $il-font-display; font-weight: 800; margin-bottom: 1rem; i { color: $il-primary; } }
+}
+
+.toc {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.6rem 0.7rem;
+    border-radius: 12px;
+    text-decoration: none;
+    color: $il-ink;
+    transition: background 0.2s;
+
+    &:hover { background: rgba(124, 92, 255, 0.07); }
+  }
+
+  &__n {
+    flex: 0 0 auto;
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border-radius: 9px;
+    background: rgba(124, 92, 255, 0.1);
+    color: $il-primary-deep;
+    font-weight: 800;
+    font-size: 0.78rem;
+  }
+
+  &__t { font-size: 0.88rem; font-weight: 600; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  &__free { font-size: 0.66rem; font-weight: 800; text-transform: uppercase; color: #0d9488; background: rgba(45, 212, 191, 0.14); padding: 0.15rem 0.5rem; border-radius: 999px; }
+}

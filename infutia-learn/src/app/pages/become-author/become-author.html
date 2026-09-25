@@ -1,0 +1,91 @@
+<section class="ba-hero">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-12 col-lg-7 text-center text-lg-start">
+        <span class="il-eyebrow"><i class="bi bi-feather"></i> Become an Author</span>
+        <h1 class="il-title mt-3">Stop sending files.<br>Start sending <span class="il-grad-text">links to a home.</span></h1>
+        <p class="il-lead mx-auto mx-lg-0">Infutia Learn gives your knowledge a premium address —
+          beautifully rendered, impossible to pirate, effortless to publish. You bring the words;
+          we bring the readers glued to them.</p>
+        <div class="d-flex flex-wrap gap-4 justify-content-center justify-content-lg-start mt-4 ba-hero__proof">
+          <span><strong>₦0</strong> to start</span>
+          <span><strong>80%</strong> revenue share</span>
+          <span><strong>3 min</strong> average time-to-publish</span>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-5">
+        <div class="ba-form il-reveal">
+          @if (!submitted()) {
+            <h3>Reserve your author spot</h3>
+            <p class="text-muted small mb-4">Free forever while in beta. We'll never sell your data.</p>
+            <label class="ba-field">
+              <span>Your name</span>
+              <input type="text" placeholder="Ada Lovelace" [ngModel]="form().name" (ngModelChange)="form.update((f) => ({ ...f, name: $event }))">
+            </label>
+            <label class="ba-field">
+              <span>Email</span>
+              <input type="email" placeholder="you@example.com" [ngModel]="form().email" (ngModelChange)="form.update((f) => ({ ...f, email: $event }))">
+            </label>
+            <label class="ba-field">
+              <span>What will you write about? <em>(optional)</em></span>
+              <input type="text" placeholder="Fiction, finance, fitness, faith…" [ngModel]="form().focus" (ngModelChange)="form.update((f) => ({ ...f, focus: $event }))">
+            </label>
+            <button class="btn btn-il-primary w-100 btn-il-primary--lg mt-2" (click)="submit()">
+              <i class="bi bi-stars me-2"></i>Create my studio
+            </button>
+            <small class="d-block text-center text-muted mt-3">By joining you agree to keep making great things.</small>
+          } @else {
+            <div class="ba-form__done text-center py-4">
+              <span class="ba-done-icon"><i class="bi bi-check-lg"></i></span>
+              <h3 class="mt-3">Welcome aboard, {{ form().name.split(' ')[0] }}!</h3>
+              <p class="text-muted">Your studio is warming up. Check {{ form().email }} for the key to your new home of digital products.</p>
+              <a class="btn btn-il-ghost" routerLink="/courses">Browse the library meanwhile</a>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container il-section">
+  <div class="text-center mb-5 il-reveal">
+    <span class="il-eyebrow"><i class="bi bi-gift"></i> The author advantage</span>
+    <h2 class="il-title">Everything a website used to charge you for.</h2>
+  </div>
+  <div class="row g-4">
+    @for (p of perks; track p.title) {
+      <div class="col-12 col-sm-6 col-lg-4 il-reveal">
+        <div class="perk h-100">
+          <span class="perk__icon"><i class="bi {{ p.icon }}"></i></span>
+          <h5>{{ p.title }}</h5>
+          <p>{{ p.text }}</p>
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="ba-steps">
+  <div class="container">
+    <div class="text-center mb-5 il-reveal">
+      <span class="il-eyebrow"><i class="bi bi-signpost-2"></i> Four steps</span>
+      <h2 class="il-title">From sign-up to public Author</h2>
+    </div>
+    <div class="row g-4">
+      @for (s of steps; track s.n) {
+        <div class="col-12 col-sm-6 col-lg-3 il-reveal">
+          <div class="ba-step h-100">
+            <span class="ba-step__n">{{ s.n }}</span>
+            <h5>{{ s.t }}</h5>
+            <p>{{ s.d }}</p>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="text-center mt-5 il-reveal">
+      <a class="btn btn-il-primary btn-il-primary--lg" routerLink="/how-it-works"><i class="bi bi-play-circle me-2"></i>Watch the Markdown magic</a>
+    </div>
+  </div>
+</section>

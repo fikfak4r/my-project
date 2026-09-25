@@ -1,0 +1,40 @@
+<footer class="il-footer">
+  <div class="container">
+    <div class="row gy-5 gx-4">
+      <div class="col-12 col-lg-4">
+        <a class="navbar-brand d-inline-flex align-items-center gap-2" routerLink="/">
+          <span class="brand-mark"><i class="bi bi-triangle-half"></i></span>
+          <span class="brand-name text-white">Infutia<em>Learn</em></span>
+        </a>
+        <p class="il-footer__tag mt-3">The home of digital products. Authors write in simple Markdown;
+          readers drift through a premium, piracy-proof reading experience.</p>
+        <form class="il-footer__news" (submit)="$event.preventDefault()">
+          <label class="visually-hidden" for="nl">Email</label>
+          <input id="nl" type="email" placeholder="Get launch notes weekly" />
+          <button class="btn btn-il-primary" type="submit" aria-label="Subscribe"><i class="bi bi-arrow-right"></i></button>
+        </form>
+      </div>
+
+      @for (g of groups; track g.title) {
+        <div class="col-6 col-lg-2">
+          <h6>{{ g.title }}</h6>
+          <ul>
+            @for (l of g.links; track l.label) {
+              <li><a [routerLink]="l.path">{{ l.label }}</a></li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+
+    <div class="il-footer__bottom d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+      <small>© {{ year }} Infutia Learn · Made for people who love words.</small>
+      <div class="d-flex gap-2 socials">
+        <a href="#" aria-label="X"><i class="bi bi-x-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>

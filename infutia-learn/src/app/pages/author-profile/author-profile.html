@@ -1,0 +1,72 @@
+<section class="ap-hero">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-12 col-md-auto text-center">
+        <span class="il-avatar il-avatar--lg ap-avatar" [style.background]="'linear-gradient(135deg,' + author().avatarFrom + ',' + author().avatarTo + ')'">
+          {{ author().initials }}
+        </span>
+      </div>
+      <div class="col-12 col-md text-center text-md-start">
+        <h1 class="ap-name">{{ author().name }}
+          @if (author().verified) { <i class="bi bi-patch-check-fill text-primary" title="Verified author"></i> }
+        </h1>
+        <p class="ap-role mb-1">{{ author().role }}</p>
+        <p class="ap-bio mx-auto mx-md-0">{{ author().bio }}</p>
+      </div>
+      <div class="col-12 col-md-auto d-flex flex-column gap-2 align-items-md-end">
+        <button class="btn rounded-pill px-4 fw-bold" [class.btn-il-primary]="!following()" [class.btn-il-ghost]="following()" (click)="following.set(!following())">
+          @if (following()) { <span><i class="bi bi-check-lg me-1"></i> Following</span> }
+          @else { <span><i class="bi bi-plus-lg me-1"></i> Follow</span> }
+        </button>
+        <button class="btn btn-il-ghost btn-sm rounded-pill px-3" (click)="feedOpen.set(true)">
+          <i class="bi bi-bell me-1"></i> Updates
+        </button>
+      </div>
+    </div>
+
+    <div class="ap-stats row text-center g-3 mt-4">
+      <div class="col"><div class="ap-stat"><strong>{{ data.fmt(author().followers) }}</strong><span>Followers</span></div></div>
+      <div class="col"><div class="ap-stat"><strong>{{ author().products }}</strong><span>Products</span></div></div>
+      <div class="col"><div class="ap-stat"><strong>{{ author().rating }}</strong><span>Avg. rating</span></div></div>
+      <div class="col"><div class="ap-stat"><strong>Public</strong><span>Profile status</span></div></div>
+    </div>
+  </div>
+</section>
+
+@if (feedOpen()) {
+  <div class="ap-feed">
+    <div class="ap-feed__card">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h6 class="mb-0"><i class="bi bi-broadcast me-2"></i>Community feed</h6>
+        <button class="btn-close" (click)="feedOpen.set(false)" aria-label="Close"></button>
+      </div>
+      @for (u of updates; track $index) {
+        <div class="ap-feed__item">
+          <span class="ap-feed__icon" [class.is-accent]="u.accent"><i class="bi {{ u.icon }}"></i></span>
+          <p class="mb-0"><strong>{{ author().name }}</strong> {{ u.text }}</p>
+          <small>{{ u.when }}</small>
+        </div>
+      }
+      <p class="ap-feed__note">Followers see every launch the moment it happens.</p>
+    </div>
+  </div>
+  <div class="r-scrim" (click)="feedOpen.set(false)"></div>
+}
+
+<section class="container il-page">
+  <h2 class="il-title mb-4" style="font-size:1.7rem">Published products</h2>
+  <div class="row g-4">
+    @for (p of products(); track p.id) {
+      <div class="col-6 col-md-4 col-lg-3 il-reveal"><app-product-card [product]="p" /></div>
+    }
+  </div>
+</section>
+
+<section class="container il-section">
+  <div class="ap-cta il-reveal text-center">
+    <h3 class="il-title" style="font-size:1.6rem">Want a profile like this?</h3>
+    <p class="il-lead mx-auto">Write privately for free. The day you publish your first digital product,
+      your author profile opens to the world — followers, community and all.</p>
+    <a class="btn btn-il-primary btn-il-primary--lg mt-2" routerLink="/become-author"><i class="bi bi-stars me-2"></i>Become an Author</a>
+  </div>
+</section>

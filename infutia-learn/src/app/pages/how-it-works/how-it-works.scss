@@ -1,0 +1,79 @@
+@use 'styles/tokens' as *;
+
+.hiw-hero { padding-block: 3rem 0.5rem; background: radial-gradient(45% 70% at 15% 0%, rgba(45, 212, 191, 0.1), transparent), linear-gradient(180deg, #f6f3ff, $il-mist); }
+
+.hiw-lab {
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 1px solid $il-line;
+  border-radius: $il-radius-lg;
+  overflow: hidden;
+  box-shadow: $il-shadow;
+  background: #fff;
+
+  @include il-up(lg) { grid-template-columns: 1fr 1fr; }
+
+  &__pane { min-width: 0; }
+  &__pane--code { border-right: 1px solid $il-line; background: #17131f; }
+
+  &__bar {
+    display: flex;
+    align-items: center;
+    padding: 0.85rem 1.2rem;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: #b9aef0;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  &__bar--right { color: $il-primary-deep; border-bottom: 1px solid $il-line; background: rgba(124, 92, 255, 0.06); }
+
+  textarea {
+    width: 100%;
+    min-height: 420px;
+    border: 0;
+    resize: vertical;
+    outline: none;
+    padding: 1.2rem;
+    font-family: $il-font-mono;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: #e9e4ff;
+    background: transparent;
+  }
+
+  &__open { margin-left: auto; font-size: 0.78rem; text-decoration: none; font-weight: 700; i { margin-right: 0.25rem; } }
+}
+
+.hiw-faq { max-width: 720px; display: grid; gap: 0.8rem; }
+
+.hiw-faq__item {
+  background: #fff;
+  border: 1px solid $il-line;
+  border-radius: $il-radius;
+  transition: all 0.2s;
+
+  button {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    border: 0;
+    background: transparent;
+    padding: 1.1rem 1.3rem;
+    font-family: $il-font-display;
+    font-weight: 700;
+    font-size: 1rem;
+    color: $il-ink;
+    text-align: left;
+    i { color: $il-primary; font-size: 1.1rem; }
+  }
+
+  p { margin: 0; padding: 0 1.3rem 1.2rem; color: $il-ink-soft; font-size: 0.93rem; line-height: 1.7; }
+
+  &.is-open { border-color: rgba(124, 92, 255, 0.45); box-shadow: $il-shadow-sm; }
+}

@@ -1,0 +1,59 @@
+<section class="courses-hero">
+  <div class="container">
+    <span class="il-eyebrow"><i class="bi bi-collection"></i> The library</span>
+    <h1 class="il-title mt-3 mb-2">Courses &amp; Digital Products</h1>
+    <p class="il-lead">Every product on Infutia Learn appears here the moment its author publishes.
+      Read instantly in the browser — no downloads, ever.</p>
+
+    <div class="courses-hero__controls il-reveal">
+      <label class="search">
+        <i class="bi bi-search"></i>
+        <input type="search" placeholder="Search titles, topics, authors…"
+               [value]="query()" (input)="query.set($any($event.target).value)" aria-label="Search products">
+      </label>
+      <div class="d-flex flex-wrap gap-2 filters">
+        @for (f of formats; track f) {
+          <button class="filter-btn" [class.is-active]="activeFormat() === f" (click)="activeFormat.set(f)">
+            {{ f === 'All' ? 'All formats' : f }}
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container il-page">
+  <div class="d-flex align-items-center justify-content-between mb-4">
+    <p class="mb-0 text-muted fw-semibold">{{ filtered().length }} product{{ filtered().length === 1 ? '' : 's' }} ready to read</p>
+    <span class="il-chip d-none d-md-inline-flex"><i class="bi bi-shield-lock"></i> Piracy-proof streaming reader</span>
+  </div>
+
+  @if (filtered().length) {
+    <div class="row g-4">
+      @for (p of filtered(); track p.id) {
+        <div class="col-6 col-md-4 col-lg-3 il-reveal"><app-product-card [product]="p" /></div>
+      }
+    </div>
+  } @else {
+    <div class="empty text-center py-5">
+      <i class="bi bi-emoji-smile"></i>
+      <h4>No products match your search</h4>
+      <p class="text-muted">Try a different keyword or clear the filters.</p>
+      <button class="btn btn-il-ghost" (click)="query.set(''); activeFormat.set('All')">Reset filters</button>
+    </div>
+  }
+</section>
+
+<section class="container il-section">
+  <div class="announce il-reveal">
+    <div class="row align-items-center g-4">
+      <div class="col-12 col-md-8">
+        <h3 class="mb-2">Publishing something soon?</h3>
+        <p class="mb-0">Your first product is all it takes to unlock a public Author profile, followers and a storefront on this page.</p>
+      </div>
+      <div class="col-12 col-md-4 text-md-end">
+        <a class="btn btn-il-primary" routerLink="/become-author"><i class="bi bi-stars me-2"></i>Become an Author</a>
+      </div>
+    </div>
+  </div>
+</section>

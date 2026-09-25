@@ -1,0 +1,56 @@
+// ─────────────────────────────────────────────────────────────
+// Infutia Learn — Design Tokens
+// Premium, elegant, mobile-first. Fonts: Fraunces (display),
+// Plus Jakarta Sans (body), JetBrains Mono (code).
+// ─────────────────────────────────────────────────────────────
+
+// Brand palette
+$il-primary: #7c5cff;        // Infusion violet
+$il-primary-deep: #4f33cc;
+$il-accent: #ff6ec7;         // Electric rose
+$il-gold: #ffb347;           // Warm highlight
+$il-teal: #2dd4bf;
+$il-ink: #17131f;            // Near-black plum ink
+$il-ink-soft: #5c5470;
+$il-mist: #faf9ff;           // Page background
+$il-line: #ece8f7;           // Hairlines
+$il-surface: #ffffff;
+
+// Surfaces
+$il-night: #17131f;          // dark section background
+
+// Gradients
+$il-gradient-brand: linear-gradient(120deg, #7c5cff 0%, #a78bfa 45%, #ff6ec7 100%);
+$il-gradient-warm: linear-gradient(120deg, #ffb347, #ff7846);
+$il-gradient-night: linear-gradient(160deg, #17131f 0%, #241b3a 60%, #2d1e4f 100%);
+
+// Typography
+$il-font-display: 'Fraunces', 'Playfair Display', Georgia, serif;
+$il-font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+$il-font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+// Shape & depth
+$il-radius-sm: 10px;
+$il-radius: 16px;
+$il-radius-lg: 24px;
+$il-radius-xl: 32px;
+$il-shadow-sm: 0 2px 10px rgba(23, 19, 31, 0.06);
+$il-shadow: 0 12px 32px rgba(79, 51, 204, 0.12);
+$il-shadow-lg: 0 24px 60px rgba(79, 51, 204, 0.18);
+
+// Breakpoints (mobile-first)
+$il-md: 768px;
+$il-lg: 992px;
+$il-xl: 1200px;
+
+@function il-width($bp) {
+  @return map-get((md: $il-md, lg: $il-lg, xl: $il-xl), $bp);
+}
+
+@mixin il-up($bp) {
+  @media (min-width: il-width($bp)) { @content; }
+}
+
+@mixin il-below($bp) {
+  @media (max-width: il-width($bp) - 0.02px) { @content; }
+}

@@ -1,0 +1,113 @@
+@if (product(); as p) {
+  <section class="pd-hero">
+    <div class="container">
+      <nav class="pd-crumb mb-3"><a routerLink="/courses">Courses</a> <i class="bi bi-chevron-right"></i> <span>{{ p.category }}</span></nav>
+      <div class="row g-5 align-items-start">
+        <div class="col-12 col-md-5 col-lg-4 mx-auto pd-cover-col">
+          <div class="il-cover pd-cover" [style.--cv-a]="p.coverFrom" [style.--cv-b]="p.coverTo">
+            @if (p.new) { <span class="il-cover__badge">New</span> }
+            <i [class]="'il-cover__icon bi ' + p.icon" style="font-size:2.6rem"></i>
+            <div>
+              <div class="il-cover__title" style="font-size:1.5rem">{{ p.title }}</div>
+              <div class="mt-1 text-uppercase fw-bold small opacity-75">{{ p.format }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-8">
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="il-chip"><i class="bi bi-upc-scan"></i> {{ p.format }}</span>
+            <span class="il-chip"><i class="bi bi-folder2-open"></i> {{ p.category }}</span>
+            @for (t of p.tags; track t) { <span class="il-chip">#{{ t }}</span> }
+          </div>
+          <h1 class="il-title mt-0 mb-2">{{ p.title }}</h1>
+          <p class="il-lead">{{ p.subtitle }} — {{ p.excerpt }}</p>
+
+          <div class="d-flex align-items-center gap-3 mt-4 flex-wrap">
+            <a class="d-flex align-items-center gap-2 text-decoration-none" [routerLink]="['/authors', author()?.id]">
+              <span class="il-avatar" [style.background]="'linear-gradient(135deg,' + author()?.avatarFrom + ',' + author()?.avatarTo + ')'">{{ author()?.initials }}</span>
+              <span>
+                <strong class="d-block text-dark">{{ author()?.name }}
+                  @if (author()?.verified) { <i class="bi bi-patch-check-fill text-primary"></i> }</strong>
+                <small class="text-muted">{{ data.fmt(author()!.followers) }} followers</small>
+              </span>
+            </a>
+            <span class="pd-meta"><i class="bi bi-star-fill"></i> {{ p.rating }} rating</span>
+            <span class="pd-meta"><i class="bi bi-person-lines-fill"></i> {{ data.fmt(p.readers) }} readers</span>
+            <span class="pd-meta"><i class="bi bi-list-ol"></i> {{ p.chapters }} chapters</span>
+          </div>
+
+          <div class="pd-buy il-reveal">
+            <div class="d-flex align-items-center justify-content-between gap-3 flex-wrap">
+              <div>
+                <div class="pd-price">{{ data.naira(p.price) }}</div>
+                <small class="text-muted">One purchase · read anywhere · never expires</small>
+              </div>
+              <div class="d-flex gap-2 flex-wrap">
+                <a class="btn btn-il-primary btn-il-primary--lg" routerLink="/read/demo"><i class="bi bi-book me-2"></i>Read now</a>
+                <button class="btn btn-il-ghost"><i class="bi bi-bookmark-heart me-1"></i>Save</button>
+              </div>
+            </div>
+            <div class="pd-buy__note mt-3">
+              <i class="bi bi-shield-check me-1"></i> Streamed inside our premium reader. No downloads means no leaked PDFs — protected by design.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container il-page">
+    <div class="row g-5">
+      <div class="col-12 col-lg-8">
+        <h2 class="il-title" style="font-size:1.7rem">Inside the pages</h2>
+        <p class="text-muted">A live sample rendered exactly how readers will see it — callouts, highlights and takeaways included.</p>
+        <div class="preview-card il-reveal">
+          <div class="preview-card__bar"><i class="bi bi-columns-gap me-2"></i> Free preview · Chapter 1</div>
+          <article class="il-md p-4" data-theme="light" [innerHTML]="freePreview()"></article>
+        </div>
+      </div>
+
+      <aside class="col-12 col-lg-4">
+        <div class="toc-card il-reveal">
+          <h5><i class="bi bi-compass me-2"></i>Chapter navigator</h5>
+          <ol class="toc">
+            @for (c of [1,2,3,4,5,6]; track c) {
+              <li>
+                <a routerLink="/read/demo">
+                  <span class="toc__n">{{ c }}</span>
+                  <span class="toc__t">{{ c === 1 ? 'Why Markdown Sets You Free' : 'Designing For Devotion — Chapter ' + c }}</span>
+                  @if (c === 1) { <span class="toc__free">Free</span> }
+                </a>
+              </li>
+            }
+          </ol>
+          <a class="btn btn-il-primary w-100 mt-3" routerLink="/read/demo"><i class="bi bi-box-arrow-in-right me-2"></i>Open the reader</a>
+        </div>
+
+        <div class="engage-card il-reveal mt-4">
+          <h5><i class="bi bi-people-heart me-2"></i>Follow this author</h5>
+          <p class="small text-muted mb-3">Followers are notified the moment {{ author()?.name?.split(' ')[0] }} publishes a new product or chapter.</p>
+          <button class="btn btn-il-ghost w-100"><i class="bi bi-plus-lg me-1"></i> Follow · {{ data.fmt(author()!.followers) }}</button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  @if (related().length) {
+    <section class="container il-section">
+      <h2 class="il-title mb-4" style="font-size:1.7rem">More in this corner of the home</h2>
+      <div class="row g-4">
+        @for (rp of related(); track rp.id) {
+          <div class="col-6 col-lg-3 il-reveal"><app-product-card [product]="rp" /></div>
+        }
+      </div>
+    </section>
+  }
+} @else {
+  <div class="container il-page text-center py-5">
+    <i class="bi bi-search display-4 text-primary"></i>
+    <h2 class="il-title mt-3">Product not found</h2>
+    <a class="btn btn-il-primary" routerLink="/courses">Back to the library</a>
+  </div>
+}
