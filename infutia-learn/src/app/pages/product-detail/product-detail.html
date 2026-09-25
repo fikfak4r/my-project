@@ -25,7 +25,7 @@
 
           <div class="d-flex align-items-center gap-3 mt-4 flex-wrap">
             <a class="d-flex align-items-center gap-2 text-decoration-none" [routerLink]="['/authors', author()?.id]">
-              <span class="il-avatar" [style.background]="'linear-gradient(135deg,' + author()?.avatarFrom + ',' + author()?.avatarTo + ')'">{{ author()?.initials }}</span>
+              <span class="il-avatar" [style.background]="'linear-gradient(150deg,' + author()?.avatarFrom + ',' + author()?.avatarTo + ')'">{{ author()?.initials }}</span>
               <span>
                 <strong class="d-block text-dark">{{ author()?.name }}
                   @if (author()?.verified) { <i class="bi bi-patch-check-fill text-primary"></i> }</strong>

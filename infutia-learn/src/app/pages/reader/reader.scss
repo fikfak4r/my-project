@@ -8,8 +8,8 @@
   padding-bottom: 6rem;
 }
 
-.reader[data-theme='sepia']    { --r-bg: #f6efe2; --r-sheet: #fbf6ea; --r-panel: #fffdf6; }
-.reader[data-theme='midnight'] { --r-bg: #120f1a; --r-sheet: #191423; --r-panel: #1f1a2b; --r-line: #2e2740; }
+.reader[data-theme='sepia']    { --r-bg: #f1ead9; --r-sheet: #f8f3e8; --r-panel: #fbf9f4; }
+.reader[data-theme='midnight'] { --r-bg: #151d29; --r-sheet: #1c2532; --r-panel: #222d3d; --r-line: #2e3a4c; }
 
 .r-bar {
   position: sticky;
@@ -29,7 +29,7 @@
 
 .r-brand {
   color: inherit;
-  font-weight: 800;
+  font-weight: 600;
   &__mark {
     display: grid; place-items: center;
     width: 34px; height: 34px;
@@ -60,7 +60,7 @@
 
   &:hover { border-color: $il-primary; color: $il-primary-deep; }
   &.is-active { background: $il-gradient-brand; color: #fff; border-color: transparent; }
-  &--saved { color: $il-primary-deep; border-color: rgba(124, 92, 255, 0.5); }
+  &--saved { color: $il-primary-deep; border-color: rgba(47, 90, 168, 0.5); }
 }
 
 .r-seg {
@@ -97,7 +97,7 @@
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   overflow-y: auto;
 
-  &.is-open { transform: none; box-shadow: $il-shadow-lg; }
+  &.is-open { transform: none; box-shadow: $il-shadow; }
 
   @include il-up(lg) {
     position: sticky;
@@ -126,8 +126,8 @@
     border-radius: 10px;
     transition: background 0.2s;
 
-    &:hover { background: rgba(124, 92, 255, 0.08); }
-    &.is-active { background: rgba(124, 92, 255, 0.14); color: $il-primary-deep; box-shadow: inset 3px 0 0 $il-primary; }
+    &:hover { background: rgba(47, 90, 168, 0.08); }
+    &.is-active { background: rgba(47, 90, 168, 0.14); color: $il-primary-deep; box-shadow: inset 3px 0 0 $il-primary; }
   }
   &__foot { margin-top: 1rem; padding-top: 0.9rem; border-top: 1px dashed var(--r-line, #{$il-line}); font-size: 0.8rem; color: var(--r-muted, #{$il-ink-soft}); i { color: $il-gold; } }
 }
@@ -167,7 +167,7 @@
   background: $il-gradient-brand;
   color: #fff;
   font-size: 1.3rem;
-  box-shadow: 0 14px 30px rgba(124, 92, 255, 0.5);
+  box-shadow: none;
 }
 
 /* Drawer + scrim */

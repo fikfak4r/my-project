@@ -43,8 +43,8 @@
             <div class="mock-window__progress"><span></span></div>
           </div>
           <span class="float-chip float-chip--1"><i class="bi bi-bookmark-star-fill text-warning me-2"></i>Bookmarked</span>
-          <span class="float-chip float-chip--2"><i class="bi bi-highlighter me-2" style="color:#ff6ec7"></i>Highlighted</span>
-          <span class="float-chip float-chip--3"><i class="bi bi-moon-stars-fill" style="color:#7c5cff"></i><span class="ms-2">Night mode</span></span>
+          <span class="float-chip float-chip--2"><i class="bi bi-highlighter me-2" style="color:#4a7bc8"></i>Highlighted</span>
+          <span class="float-chip float-chip--3"><i class="bi bi-moon-stars-fill" style="color:#2f5aa8"></i><span class="ms-2">Night mode</span></span>
         </div>
       </div>
     </div>
@@ -233,7 +233,7 @@
 </section>
 
 <!-- ═══════════ AUTHORS ═══════════ -->
-<section class="il-section" style="background: linear-gradient(180deg, #fff, #f6f3ff);">
+<section class="il-section" style="background: $il-mist;">
   <div class="container">
     <div class="text-center mb-5 il-reveal">
       <span class="il-eyebrow"><i class="bi bi-person-badge"></i> Meet the minds</span>
@@ -245,7 +245,7 @@
       @for (a of topAuthors; track a.id) {
         <div class="col-6 col-lg-3 il-reveal">
           <a class="author-card h-100" [routerLink]="['/authors', a.id]">
-            <span class="il-avatar il-avatar--lg mb-3" [style.background]="'linear-gradient(135deg,' + a.avatarFrom + ',' + a.avatarTo + ')'">{{ a.initials }}</span>
+            <span class="il-avatar il-avatar--lg mb-3" [style.background]="'linear-gradient(150deg,' + a.avatarFrom + ',' + a.avatarTo + ')'">{{ a.initials }}</span>
             <h4>{{ a.name }}</h4>
             <div class="author-card__role">{{ a.role }}</div>
             <p class="author-card__bio">{{ a.bio }}</p>

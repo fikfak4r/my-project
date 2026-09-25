@@ -21,7 +21,7 @@
         @if (auth.session(); as session) {
           <div class="il-user-chip">
             <a class="il-user-chip__avatar" routerLink="/studio"
-               [style.background]="'linear-gradient(120deg,' + session.avatarFrom + ',' + session.avatarTo + ')'"
+               [style.background]="'linear-gradient(150deg,' + session.avatarFrom + ',' + session.avatarTo + ')'"
                [title]="session.name">{{ session.initials }}</a>
             <span class="il-user-chip__name d-none d-lg-inline">{{ session.name }}</span>
             <a class="btn btn-il-primary btn-sm ms-lg-2" routerLink="/studio">

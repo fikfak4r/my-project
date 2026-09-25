@@ -13,11 +13,9 @@
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 
   &:hover {
-    transform: translateY(-6px);
-    box-shadow: $il-shadow-lg;
+    border-color: #cdd6e2;
+    box-shadow: $il-shadow-sm;
     color: $il-ink;
-
-    .pc__cover { transform: scale(1.02); }
   }
 }
 
@@ -39,7 +37,7 @@
 .pc__icon { font-size: 2rem; }
 .pc__format {
   font-size: 0.7rem;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   opacity: 0.85;
@@ -84,12 +82,12 @@
 }
 
 .pc__price {
-  font-weight: 800;
+  font-weight: 600;
   font-size: 0.95rem;
   color: $il-primary-deep;
-  background: rgba(124, 92, 255, 0.09);
-  border-radius: 999px;
+  background: rgba(47, 90, 168, 0.09);
+  border-radius: $il-radius-sm;
   padding: 0.3rem 0.8rem;
 
-  &--free { color: #0d9488; background: rgba(45, 212, 191, 0.12); }
+  &--free { color: #33697a; background: rgba(62, 124, 140, 0.12); }
 }

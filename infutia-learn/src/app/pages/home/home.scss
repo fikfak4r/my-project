@@ -3,17 +3,15 @@
 /* ── Hero ─────────────────────────────── */
 .hero {
   padding-block: 3.5rem 4.5rem;
-  background:
-    radial-gradient(60% 60% at 80% 10%, rgba(255, 110, 199, 0.1), transparent 60%),
-    radial-gradient(50% 50% at 10% 20%, rgba(124, 92, 255, 0.12), transparent 60%),
-    $il-mist;
+  background: $il-mist;
+  border-bottom: 1px solid $il-line;
 
-  &__blob-1 { width: 420px; height: 420px; background: #c4b5fd; top: -140px; right: -100px; }
-  &__blob-2 { width: 360px; height: 360px; background: #fbcfe8; bottom: -160px; left: -120px; opacity: 0.4; }
+  &__blob-1 { width: 420px; height: 420px; background: #dbe4f0; top: -140px; right: -100px; }
+  &__blob-2 { width: 360px; height: 360px; background: #dbe4f0; bottom: -160px; left: -120px; opacity: 0.4; }
 
   &__title {
     font-family: $il-font-display;
-    font-weight: 800;
+    font-weight: 600;
     font-size: clamp(2.2rem, 7vw, 3.6rem);
     line-height: 1.08;
     letter-spacing: -0.03em;
@@ -31,7 +29,7 @@
   background: #fff;
   border: 1px solid $il-line;
   border-radius: $il-radius-lg;
-  box-shadow: $il-shadow-lg;
+  box-shadow: $il-shadow;
   overflow: hidden;
   transform: rotate(1.2deg);
 
@@ -41,11 +39,11 @@
     gap: 6px;
     padding: 0.75rem 1rem;
     border-bottom: 1px solid $il-line;
-    background: #fbfaff;
+    background: #fafbfc;
 
     span { width: 10px; height: 10px; border-radius: 50%; background: #e6e0f5; }
-    span:nth-child(1) { background: #fca5a5; }
-    span:nth-child(2) { background: #fcd34d; }
+    span:nth-child(1) { background: #c9d4e2; }
+    span:nth-child(2) { background: #d8c49a; }
     span:nth-child(3) { background: #86efac; }
 
     em {
@@ -56,7 +54,7 @@
       color: $il-ink-soft;
       background: #fff;
       border: 1px solid $il-line;
-      border-radius: 999px;
+      border-radius: $il-radius-sm;
       padding: 0.2rem 0.7rem;
       max-width: 55%;
       overflow: hidden;
@@ -69,7 +67,7 @@
 
   &__progress {
     height: 6px;
-    background: #efeaf9;
+    background: #edf1f6;
     span { display: block; height: 100%; width: 62%; background: $il-gradient-brand; border-radius: 0 4px 4px 0; }
   }
 }
@@ -83,9 +81,9 @@
   color: $il-ink;
   background: #fff;
   border: 1px solid $il-line;
-  border-radius: 999px;
+  border-radius: $il-radius-sm;
   padding: 0.5rem 0.95rem;
-  box-shadow: $il-shadow;
+  box-shadow: none;
   animation: il-float 5s ease-in-out infinite;
 
   &--1 { top: 8%; left: -6%; animation-delay: 0.4s; }
@@ -100,23 +98,19 @@
 
 @keyframes il-float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
 }
 
 /* ── Stats ────────────────────────────── */
 .stats {
-  background: $il-gradient-night;
+  background: $il-night;
   color: #fff;
   padding-block: 2.4rem;
 
   &__num {
     font-family: $il-font-display;
-    font-weight: 800;
+    font-weight: 600;
     font-size: clamp(1.6rem, 4vw, 2.3rem);
-    background: linear-gradient(120deg, #c4b5fd, #ff6ec7);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: #e8eef6;
   }
   &__label { font-size: 0.82rem; color: rgba(255, 255, 255, 0.65); margin-top: 0.2rem; }
 }
@@ -132,14 +126,14 @@
 
   @include il-up(md) { padding: 2.6rem 2.4rem; }
 
-  h3 { font-family: $il-font-display; font-weight: 800; font-size: 1.45rem; margin: 1rem 0 0.25rem; }
+  h3 { font-family: $il-font-display; font-weight: 600; font-size: 1.45rem; margin: 1rem 0 0.25rem; }
   &__tag { color: $il-primary-deep; font-weight: 700; font-size: 0.95rem; margin-bottom: 1.1rem; }
 
   ul { list-style: none; padding: 0; margin: 0 0 1.4rem; display: grid; gap: 0.65rem; }
   li { display: flex; gap: 0.6rem; font-size: 0.93rem; line-height: 1.55; color: $il-ink-soft; }
   i.bi-check-circle-fill { color: $il-teal; margin-top: 0.15rem; }
 
-  &__link { font-weight: 800; text-decoration: none; color: $il-primary-deep; i { transition: transform 0.2s; } &:hover i { transform: translateX(4px); } }
+  &__link { font-weight: 600; text-decoration: none; color: $il-primary-deep; i { transition: transform 0.2s; } &:hover i { transform: translateX(4px); } }
 
   &__icon {
     display: inline-grid;
@@ -157,14 +151,14 @@
     inset: 0 0 auto 0;
     height: 5px;
   }
-  &--reader::after { background: linear-gradient(90deg, #2dd4bf, #3b82f6); }
+  &--reader::after { background: $il-teal; }
   &--author::after { background: $il-gradient-brand; }
-  &--reader .benefit__icon { background: linear-gradient(135deg, #2dd4bf, #3b82f6); }
+  &--reader .benefit__icon { background: $il-teal; }
   &--author .benefit__icon { background: $il-gradient-brand; }
 }
 
 /* ── Studio demo strip ────────────────── */
-.studio-strip { background: linear-gradient(180deg, #fff 0%, #f6f3ff 100%); }
+.studio-strip { background: $il-mist; }
 
 .syntax-list {
   list-style: none;
@@ -179,8 +173,8 @@
     font-size: 0.78rem;
     font-weight: 600;
     color: $il-primary-deep;
-    background: rgba(124, 92, 255, 0.09);
-    border: 1px solid rgba(124, 92, 255, 0.18);
+    background: rgba(47, 90, 168, 0.09);
+    border: 1px solid rgba(47, 90, 168, 0.18);
     border-radius: 8px;
     padding: 0.3rem 0.6rem;
     white-space: nowrap;
@@ -192,10 +186,10 @@
   background: #fff;
   border: 1px solid $il-line;
   border-radius: $il-radius-lg;
-  box-shadow: $il-shadow;
+  box-shadow: none;
   overflow: hidden;
 
-  &__tabs { display: flex; border-bottom: 1px solid $il-line; background: #fbfaff; }
+  &__tabs { display: flex; border-bottom: 1px solid $il-line; background: #fafbfc; }
 
   &__tab {
     flex: 1;
@@ -218,8 +212,8 @@
     font-family: $il-font-mono;
     font-size: 0.82rem;
     line-height: 1.75;
-    color: #e9e4ff;
-    background: $il-gradient-night;
+    color: #eef2f8;
+    background: $il-night;
     white-space: pre-wrap;
     code { color: inherit; background: transparent; }
   }
@@ -239,7 +233,7 @@
   text-align: center;
   transition: transform 0.25s, box-shadow 0.25s;
 
-  &:hover { transform: translateY(-6px); box-shadow: $il-shadow; }
+  &:hover { border-color: #cdd6e2; box-shadow: $il-shadow-sm; }
 
   &__n {
     position: absolute;
@@ -253,12 +247,12 @@
     border-radius: 50%;
     background: $il-gradient-brand;
     color: #fff;
-    font-weight: 800;
-    box-shadow: 0 8px 18px rgba(124, 92, 255, 0.4);
+    font-weight: 600;
+    box-shadow: none;
   }
 
   &__icon { font-size: 2rem; color: $il-primary; display: block; margin-bottom: 0.6rem; }
-  h4 { font-family: $il-font-display; font-weight: 800; margin-bottom: 0.5rem; }
+  h4 { font-family: $il-font-display; font-weight: 600; margin-bottom: 0.5rem; }
   p { font-size: 0.9rem; color: $il-ink-soft; line-height: 1.65; margin: 0; }
 }
 
@@ -276,9 +270,9 @@
   padding: 1.8rem 1.2rem;
   transition: transform 0.25s, box-shadow 0.25s;
 
-  &:hover { transform: translateY(-6px); box-shadow: $il-shadow-lg; color: $il-ink; }
+  &:hover { border-color: #cdd6e2; box-shadow: $il-shadow-sm; color: $il-ink; }
 
-  h4 { font-family: $il-font-display; font-weight: 800; font-size: 1.05rem; }
+  h4 { font-family: $il-font-display; font-weight: 600; font-size: 1.05rem; }
   &__role { font-size: 0.78rem; font-weight: 700; color: $il-primary-deep; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.6rem; }
   &__bio { font-size: 0.86rem; color: $il-ink-soft; line-height: 1.6; flex: 1; }
   &__meta {
@@ -292,7 +286,7 @@
 }
 
 /* ── Testimonials ─────────────────────── */
-.voices { background: linear-gradient(180deg, #fff, #fdf3fa); }
+.voices { background: linear-gradient(180deg, #fff, #f4f7fb); }
 
 .voice {
   margin: 0;
@@ -323,15 +317,15 @@
     position: relative;
     overflow: hidden;
     border-radius: $il-radius-xl;
-    background: $il-gradient-night;
+    background: $il-night;
     padding: 3.5rem 1.5rem;
     text-align: center;
-    box-shadow: $il-shadow-lg;
+    box-shadow: $il-shadow;
 
     @include il-up(md) { padding: 5rem 3rem; }
   }
 
-  &__glow { width: 480px; height: 480px; background: #7c5cff; top: -220px; left: 50%; transform: translateX(-50%); opacity: 0.35; }
+  &__glow { display: none; }
   &__sub { color: rgba(255, 255, 255, 0.72); max-width: 52ch; font-size: 1.02rem; line-height: 1.7; }
   &__note { display: block; margin-top: 1.4rem; color: rgba(255, 255, 255, 0.5); font-size: 0.8rem; letter-spacing: 0.03em; }
 }

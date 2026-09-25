@@ -25,7 +25,7 @@
 
       <div class="il-studio__me">
         <a class="il-studio__avatar" [routerLink]="['/authors', me.authorId]"
-           [style.background]="'linear-gradient(120deg,' + me.avatarFrom + ',' + me.avatarTo + ')'"
+           [style.background]="'linear-gradient(150deg,' + me.avatarFrom + ',' + me.avatarTo + ')'"
            title="View my public profile">{{ me.initials }}</a>
         <button type="button" class="btn il-studio__out" (click)="signOut()" title="Sign out">
           <i class="bi bi-box-arrow-right"></i>
@@ -101,28 +101,28 @@
       <div class="row g-3 g-lg-4 mt-1">
         <div class="col-6 col-lg-3">
           <div class="il-stat">
-            <span class="il-stat__icon" style="--tint:#7c5cff"><i class="bi bi-journal-bookmark-fill"></i></span>
+            <span class="il-stat__icon" style="--tint:#2f5aa8"><i class="bi bi-journal-bookmark-fill"></i></span>
             <p class="il-stat__value">{{ products().length }}</p>
             <p class="il-stat__label">Published products</p>
           </div>
         </div>
         <div class="col-6 col-lg-3">
           <div class="il-stat">
-            <span class="il-stat__icon" style="--tint:#ff6ec7"><i class="bi bi-eye-fill"></i></span>
+            <span class="il-stat__icon" style="--tint:#4a7bc8"><i class="bi bi-eye-fill"></i></span>
             <p class="il-stat__value">{{ compact(readers()) }}</p>
             <p class="il-stat__label">Readers served</p>
           </div>
         </div>
         <div class="col-6 col-lg-3">
           <div class="il-stat">
-            <span class="il-stat__icon" style="--tint:#2dd4bf"><i class="bi bi-people-fill"></i></span>
+            <span class="il-stat__icon" style="--tint:#3e7c8c"><i class="bi bi-people-fill"></i></span>
             <p class="il-stat__value">{{ compact(followers()) }}</p>
             <p class="il-stat__label">Followers</p>
           </div>
         </div>
         <div class="col-6 col-lg-3">
           <div class="il-stat">
-            <span class="il-stat__icon" style="--tint:#ffb347"><i class="bi bi-cash-coin"></i></span>
+            <span class="il-stat__icon" style="--tint:#b08d4f"><i class="bi bi-cash-coin"></i></span>
             <p class="il-stat__value il-stat__value--sm">{{ ngn(earnings()) }}</p>
             <p class="il-stat__label">Est. royalties</p>
           </div>
@@ -207,7 +207,7 @@
                     <td>
                       <div class="d-flex align-items-center gap-3">
                         <span class="il-table__cover"
-                              [style.background]="'linear-gradient(135deg,' + p.coverFrom + ',' + p.coverTo + ')'">
+                              [style.background]="'linear-gradient(150deg,' + p.coverFrom + ',' + p.coverTo + ')'">
                           <i class="bi" [class]="p.icon"></i>
                         </span>
                         <div>
@@ -255,9 +255,9 @@
             <div class="il-follow-card">
               <h3><i class="bi bi-heart me-2"></i>Top readers this month</h3>
               <ul class="il-follow-list">
-                <li><span class="il-follow-list__av" style="--from:#ffb347;--to:#ff7846">AB</span> Ada B. <small>finished 4 chapters</small></li>
-                <li><span class="il-follow-list__av" style="--from:#2dd4bf;--to:#3b82f6">TK</span> Tobi K. <small>highlighted 12 passages</small></li>
-                <li><span class="il-follow-list__av" style="--from:#f472b6;--to:#a78bfa">MZ</span> Mara Z. <small>left 3 annotations</small></li>
+                <li><span class="il-follow-list__av" style="--from:#b08d4f;--to:#9a7a43">AB</span> Ada B. <small>finished 4 chapters</small></li>
+                <li><span class="il-follow-list__av" style="--from:#3e7c8c;--to:#5b83b8">TK</span> Tobi K. <small>highlighted 12 passages</small></li>
+                <li><span class="il-follow-list__av" style="--from:#7d97c4;--to:#4a7bc8">MZ</span> Mara Z. <small>left 3 annotations</small></li>
               </ul>
             </div>
           </div>
