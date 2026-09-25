@@ -1,0 +1,198 @@
+@use 'styles/tokens' as *;
+
+.reader {
+  min-height: 100vh;
+  background: var(--r-bg, #{$il-mist});
+  color: var(--r-text, #{$il-ink});
+  transition: background 0.3s ease;
+  padding-bottom: 6rem;
+}
+
+.reader[data-theme='sepia']    { --r-bg: #f6efe2; --r-sheet: #fbf6ea; --r-panel: #fffdf6; }
+.reader[data-theme='midnight'] { --r-bg: #120f1a; --r-sheet: #191423; --r-panel: #1f1a2b; --r-line: #2e2740; }
+
+.r-bar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding: 0.65rem clamp(0.9rem, 3vw, 1.6rem);
+  background: var(--r-panel, #fff);
+  border-bottom: 1px solid var(--r-line, #{$il-line});
+  backdrop-filter: blur(8px);
+}
+
+.r-bar__side { display: flex; align-items: center; gap: 0.5rem; min-width: 0; }
+
+.r-brand {
+  color: inherit;
+  font-weight: 800;
+  &__mark {
+    display: grid; place-items: center;
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    background: $il-gradient-brand;
+    color: #fff;
+  }
+}
+
+.r-title { font-size: 0.9rem; max-width: 260px; }
+.r-sub { color: var(--r-muted, #{$il-ink-soft}); font-size: 0.75rem; }
+
+.r-tools { flex-wrap: nowrap; }
+
+.r-btn {
+  border: 1px solid var(--r-line, #{$il-line});
+  background: transparent;
+  color: inherit;
+  border-radius: 10px;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 0.6rem;
+  display: inline-grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+
+  &:hover { border-color: $il-primary; color: $il-primary-deep; }
+  &.is-active { background: $il-gradient-brand; color: #fff; border-color: transparent; }
+  &--saved { color: $il-primary-deep; border-color: rgba(124, 92, 255, 0.5); }
+}
+
+.r-seg {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 12px;
+  border: 1px solid var(--r-line, #{$il-line});
+
+  .r-btn { border: 0; min-width: 34px; height: 32px; border-radius: 9px; }
+}
+
+.r-zoom { border: 1px solid var(--r-line, #{$il-line}); border-radius: 12px; overflow: hidden; .r-btn { border: 0; border-radius: 0; } }
+
+.r-progress {
+  height: 4px;
+  background: var(--r-line, #e9e4f5);
+  span { display: block; height: 100%; background: $il-gradient-brand; transition: width 0.4s ease; }
+}
+
+.r-shell { display: grid; grid-template-columns: 1fr; gap: 1.6rem; padding-top: 1.6rem; @include il-up(lg) { grid-template-columns: 260px minmax(0, 1fr); } }
+
+/* TOC */
+.r-toc {
+  background: var(--r-panel, #fff);
+  border: 1px solid var(--r-line, #{$il-line});
+  border-radius: $il-radius-lg;
+  padding: 1.1rem;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: min(320px, 85vw);
+  z-index: 60;
+  transform: translateX(-105%);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow-y: auto;
+
+  &.is-open { transform: none; box-shadow: $il-shadow-lg; }
+
+  @include il-up(lg) {
+    position: sticky;
+    top: 84px;
+    width: auto;
+    transform: none;
+    height: fit-content;
+    max-height: calc(100vh - 110px);
+  }
+
+  &__head { display: flex; align-items: center; justify-content: space-between; h6 { margin: 0; font-family: $il-font-display; i { color: $il-primary; } } }
+  &__list { display: grid; gap: 0.25rem; margin-top: 0.8rem; }
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    width: 100%;
+    text-align: left;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-size: 0.87rem;
+    font-weight: 600;
+    padding: 0.6rem 0.7rem;
+    border-radius: 10px;
+    transition: background 0.2s;
+
+    &:hover { background: rgba(124, 92, 255, 0.08); }
+    &.is-active { background: rgba(124, 92, 255, 0.14); color: $il-primary-deep; box-shadow: inset 3px 0 0 $il-primary; }
+  }
+  &__foot { margin-top: 1rem; padding-top: 0.9rem; border-top: 1px dashed var(--r-line, #{$il-line}); font-size: 0.8rem; color: var(--r-muted, #{$il-ink-soft}); i { color: $il-gold; } }
+}
+
+/* Sheet */
+.r-main { min-width: 0; }
+
+.r-sheet {
+  background: var(--r-sheet, #fff);
+  border: 1px solid var(--r-line, #{$il-line});
+  border-radius: $il-radius-lg;
+  box-shadow: $il-shadow-sm;
+  padding: clamp(1.4rem, 5vw, 3.4rem);
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.r-pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 760px;
+  margin: 1.4rem auto 0;
+}
+
+.r-foot-note { margin-top: 1.6rem; font-size: 0.8rem; color: var(--r-muted, #{$il-ink-soft}); }
+
+.r-fab {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 1.4rem;
+  z-index: 50;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 0;
+  background: $il-gradient-brand;
+  color: #fff;
+  font-size: 1.3rem;
+  box-shadow: 0 14px 30px rgba(124, 92, 255, 0.5);
+}
+
+/* Drawer + scrim */
+.r-drawer {
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  width: min(340px, 88vw);
+  background: var(--r-panel, #fff);
+  border-left: 1px solid var(--r-line, #{$il-line});
+  z-index: 70;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  animation: il-slide 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+
+  &__head { display: flex; justify-content: space-between; align-items: center; h6 { margin: 0; font-family: $il-font-display; i { color: $il-primary; } } }
+  &__list { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: 0.4rem; overflow-y: auto;
+    li { display: flex; align-items: center; gap: 0.4rem; }
+    button { flex: 1; text-align: left; border: 1px solid var(--r-line, #{$il-line}); background: transparent; color: inherit; border-radius: 12px; padding: 0.7rem 0.9rem; font-weight: 600; font-size: 0.88rem;
+      &:hover { border-color: $il-primary; } } }
+  &__x { flex: 0 0 auto !important; width: 40px; border: 0 !important; background: transparent !important; color: #c2410c; }
+  &__empty { font-size: 0.88rem; color: var(--r-muted, #{$il-ink-soft}); margin-top: 1rem; }
+  &__foot { margin-top: auto; padding-top: 1rem; font-size: 0.75rem; color: var(--r-muted, #{$il-ink-soft}); border-top: 1px dashed var(--r-line, #{$il-line}); }
+}
+
+.r-scrim { position: fixed; inset: 0; background: rgba(15, 10, 30, 0.45); z-index: 55; backdrop-filter: blur(2px); }
+
+@keyframes il-slide { from { transform: translateX(30px); opacity: 0; } to { transform: none; opacity: 1; } }

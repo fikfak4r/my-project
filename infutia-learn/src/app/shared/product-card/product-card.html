@@ -1,0 +1,29 @@
+<a class="pc" [routerLink]="['/product', product.slug]">
+  <div class="il-cover pc__cover" [style.--cv-a]="product.coverFrom" [style.--cv-b]="product.coverTo">
+    @if (product.new) { <span class="il-cover__badge">New</span> }
+    @else if (product.trending) { <span class="il-cover__badge"><i class="bi bi-fire"></i> Hot</span> }
+    <i [class]="'il-cover__icon bi ' + product.icon"></i>
+    <div>
+      <div class="il-cover__title">{{ product.title }}</div>
+      <div class="pc__format"><i class="bi bi-upc-scan me-1"></i>{{ product.format }}</div>
+    </div>
+  </div>
+  <div class="pc__body">
+    <div class="d-flex align-items-center gap-2 mb-1">
+      <span class="il-avatar il-avatar--sm" [style.background]="'linear-gradient(135deg,' + author().avatarFrom + ',' + author().avatarTo + ')'">{{ author().initials }}</span>
+      <div class="min-w-0">
+        <div class="pc__author text-truncate">{{ author().name }}
+          @if (author().verified) { <i class="bi bi-patch-check-fill text-primary"></i> }
+        </div>
+        <div class="pc__role text-truncate">{{ author().role }}</div>
+      </div>
+    </div>
+    <h3 class="pc__title">{{ product.title }}</h3>
+    <p class="pc__excerpt">{{ product.excerpt }}</p>
+    <div class="d-flex align-items-center justify-content-between mt-auto">
+      <span class="pc__rating"><i class="bi bi-star-fill"></i> {{ product.rating }}
+        <small>· {{ data.fmt(product.readers) }} readers</small></span>
+      <span class="pc__price" [class.pc__price--free]="product.price === 0">{{ data.naira(product.price) }}</span>
+    </div>
+  </div>
+</a>

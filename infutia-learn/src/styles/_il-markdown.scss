@@ -1,0 +1,240 @@
+// ─────────────────────────────────────────────────────────────
+// Infutia Markdown rendered output — shared by the reader,
+// the live demo and the markdown studio.
+// ─────────────────────────────────────────────────────────────
+@use './tokens' as t;
+
+.il-md {
+  font-family: t.$il-font-body;
+  color: var(--il-text, #{t.$il-ink});
+  font-size: 1.06rem;
+  line-height: 1.85;
+
+  .md-h1 {
+    font-family: t.$il-font-display;
+    font-weight: 800;
+    font-size: clamp(1.7rem, 4.5vw, 2.3rem);
+    letter-spacing: -0.02em;
+    margin: 0 0 1rem;
+    color: var(--il-heading, #{t.$il-ink});
+  }
+
+  .md-h2 {
+    font-family: t.$il-font-display;
+    font-weight: 700;
+    font-size: clamp(1.35rem, 3.5vw, 1.7rem);
+    letter-spacing: -0.015em;
+    margin: 2.4rem 0 0.9rem;
+    padding-top: 0.4rem;
+    color: var(--il-heading, #{t.$il-ink});
+    scroll-margin-top: 96px;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 44px;
+      height: 4px;
+      border-radius: 4px;
+      margin-bottom: 0.7rem;
+      background: t.$il-gradient-brand;
+    }
+  }
+
+  .md-h3 {
+    font-family: t.$il-font-display;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin: 1.8rem 0 0.6rem;
+    color: var(--il-heading, #{t.$il-ink});
+  }
+
+  .md-p {
+    margin: 0 0 1.15rem;
+  }
+
+  .md-code {
+    font-family: t.$il-font-mono;
+    font-size: 0.86em;
+    background: var(--il-chip, rgba(124, 92, 255, 0.1));
+    color: var(--il-code-text, #{t.$il-primary-deep});
+    padding: 0.15em 0.45em;
+    border-radius: 6px;
+  }
+
+  .md-pre {
+    font-family: t.$il-font-mono;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    background: #17131f;
+    color: #e9e4ff;
+    border-radius: t.$il-radius;
+    padding: 1.2rem 1.4rem;
+    overflow-x: auto;
+    margin: 1.4rem 0;
+    box-shadow: t.$il-shadow-sm;
+  }
+
+  .md-link {
+    color: var(--il-accent-c, #{t.$il-primary-deep});
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: rgba(124, 92, 255, 0.4);
+    text-underline-offset: 3px;
+  }
+
+  // ==highlighted sentence==
+  .md-mark {
+    background: linear-gradient(120deg, rgba(255, 179, 71, 0.4), rgba(255, 110, 199, 0.35));
+    color: inherit;
+    padding: 0.1em 0.3em;
+    border-radius: 6px;
+  }
+
+  // [[key takeaway]] chip
+  .md-key {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 0.92em;
+    color: #fff;
+    background: t.$il-gradient-brand;
+    border-radius: 999px;
+    padding: 0.45em 1em;
+    margin: 0.6rem 0;
+    box-shadow: 0 8px 20px rgba(124, 92, 255, 0.35);
+  }
+
+  .md-quote {
+    margin: 1.6rem 0;
+    padding: 1rem 1.4rem;
+    border-left: 4px solid transparent;
+    border-image: t.$il-gradient-brand 1;
+    background: var(--il-chip, rgba(124, 92, 255, 0.06));
+    border-radius: 0 t.$il-radius t.$il-radius 0;
+    font-family: t.$il-font-display;
+    font-style: italic;
+    font-size: 1.12em;
+    color: var(--il-heading, #{t.$il-ink-soft});
+  }
+
+  .md-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin: 2.2rem auto;
+    color: t.$il-primary;
+    opacity: 0.65;
+
+    &::before, &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #a78bfa, transparent);
+    }
+  }
+
+  .md-list {
+    margin: 0 0 1.2rem;
+    padding-left: 1.3rem;
+    display: grid;
+    gap: 0.45rem;
+
+    li::marker { color: t.$il-primary; font-weight: 700; }
+  }
+
+  .md-checklist {
+    list-style: none;
+    margin: 0 0 1.3rem;
+    padding: 0;
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .md-check__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+
+    &.is-done span:last-child {
+      opacity: 0.6;
+      text-decoration: line-through;
+    }
+  }
+
+  .md-check__box {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    margin-top: 0.15rem;
+    border-radius: 8px;
+    border: 2px solid #c9bef5;
+    display: grid;
+    place-items: center;
+    font-size: 0.85rem;
+    color: #fff;
+    transition: all 0.2s;
+  }
+
+  .is-done .md-check__box {
+    background: t.$il-gradient-brand;
+    border-color: transparent;
+  }
+
+  // ::: tip | note | warn callouts ("Infusion blocks")
+  .md-callout {
+    border-radius: t.$il-radius;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    border: 1px solid;
+
+    &__head {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-weight: 800;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    &__body { font-size: 0.98rem; line-height: 1.7; }
+
+    &--tip {
+      background: rgba(45, 212, 191, 0.08);
+      border-color: rgba(45, 212, 191, 0.35);
+      .md-callout__head { color: #0d9488; }
+    }
+    &--note {
+      background: rgba(124, 92, 255, 0.07);
+      border-color: rgba(124, 92, 255, 0.3);
+      .md-callout__head { color: t.$il-primary-deep; }
+    }
+    &--warn {
+      background: rgba(255, 179, 71, 0.12);
+      border-color: rgba(255, 150, 60, 0.4);
+      .md-callout__head { color: #c2620a; }
+    }
+  }
+}
+
+// Reader theme variants (data-theme on the reading surface)
+[data-theme='sepia'] {
+  --il-text: #4b3a2a;
+  --il-heading: #33261a;
+  --il-chip: rgba(176, 141, 88, 0.14);
+  --il-code-text: #8a5a1e;
+  --il-accent-c: #9a6b2f;
+}
+
+[data-theme='midnight'] {
+  --il-text: #cfc9e2;
+  --il-heading: #f3efff;
+  --il-chip: rgba(167, 139, 250, 0.16);
+  --il-code-text: #c4b5fd;
+  --il-accent-c: #a78bfa;
+
+  .md-quote { background: rgba(167, 139, 250, 0.08); }
+  .md-mark { background: linear-gradient(120deg, rgba(255, 179, 71, 0.35), rgba(255, 110, 199, 0.3)); }
+}

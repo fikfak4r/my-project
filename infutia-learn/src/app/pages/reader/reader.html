@@ -1,0 +1,104 @@
+<div class="reader" [attr.data-theme]="theme()">
+  <!-- Top toolbar -->
+  <header class="r-bar">
+    <div class="r-bar__side">
+      <button class="r-btn d-lg-none" aria-label="Chapters" (click)="tocOpen.set(true)"><i class="bi bi-list-ol"></i></button>
+      <a class="r-brand text-decoration-none d-flex align-items-center gap-2" routerLink="/courses">
+        <span class="r-brand__mark"><i class="bi bi-triangle-half"></i></span>
+        <span class="r-brand__name d-none d-sm-inline">Reader</span>
+      </a>
+      <div class="d-none d-md-block ms-3 min-w-0">
+        <strong class="d-block text-truncate r-title">{{ product.title }}</strong>
+        <small class="r-sub">{{ author.name }}</small>
+      </div>
+    </div>
+
+    <div class="r-bar__side r-tools">
+      <div class="r-zoom d-none d-flex">
+        <button class="r-btn" (click)="zoom(-1)" aria-label="Smaller text">A-</button>
+        <button class="r-btn" (click)="zoom(1)" aria-label="Larger text">A+</button>
+      </div>
+      <div class="r-seg">
+        @for (t of themes; track t.id) {
+          <button class="r-btn" [class.is-active]="theme() === t.id" (click)="setTheme(t.id)" [title]="t.label" aria-label="Theme">
+            <i class="bi {{ t.icon }}"></i>
+          </button>
+        }
+      </div>
+      <button class="r-btn" [class.r-btn--saved]="bookmarks().length" (click)="bookmarksOpen.set(true)">
+        <i class="bi bi-bookmark-check"></i><span class="d-none d-md-inline ms-1">{{ bookmarks().length }}</span>
+      </button>
+      <button class="btn btn-il-primary btn-sm rounded-pill px-3 d-none d-lg-inline-flex" (click)="toggleBookmark()">
+        <i class="bi bi-bookmark-plus me-1"></i> Bookmark section
+      </button>
+    </div>
+  </header>
+
+  <!-- Progress -->
+  <div class="r-progress"><span [style.width.%]="progress()"></span></div>
+
+  <div class="r-shell container">
+    <!-- Chapter navigator -->
+    <aside class="r-toc" [class.is-open]="tocOpen()">
+      <div class="r-toc__head">
+        <h6><i class="bi bi-compass me-2"></i>Chapters</h6>
+        <button class="r-btn d-lg-none" (click)="tocOpen.set(false)" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+      </div>
+      <nav class="r-toc__list">
+        @for (t of doc().toc; track t.id) {
+          <button class="r-toc__item" [class.is-active]="activeSection() === t.id" (click)="jump(t.id)">
+            <span>{{ t.label }}</span>
+            @if (isBookmarked(t.id)) { <i class="bi bi-bookmark-fill text-danger"></i> }
+          </button>
+        }
+      </nav>
+      <div class="r-toc__foot">
+        <i class="bi bi-lightning-charge-fill"></i> {{ progress() }}% through · keep going!
+      </div>
+    </aside>
+    @if (tocOpen()) { <div class="r-scrim d-lg-none" (click)="tocOpen.set(false)"></div> }
+
+    <!-- Reading surface -->
+    <main class="r-main">
+      <article class="r-sheet il-md" [style.font-size.%]="fontScale()" [innerHTML]="html()"></article>
+
+      <div class="r-pager">
+        <button class="btn btn-il-ghost rounded-pill" (click)="prevChapter()"><i class="bi bi-arrow-left me-1"></i> Previous</button>
+        <button class="btn btn-il-primary rounded-pill" (click)="nextChapter()">Next chapter <i class="bi bi-arrow-right ms-1"></i></button>
+      </div>
+
+      <p class="r-foot-note text-center">
+        <i class="bi bi-shield-lock me-1"></i> You're reading inside Infutia Learn — the premium home of this book. Nothing to download. Ever.
+      </p>
+    </main>
+  </div>
+
+  <!-- Mobile FAB -->
+  <button class="r-fab d-lg-none" (click)="toggleBookmark()" aria-label="Bookmark current section">
+    <i class="bi bi-bookmark-heart"></i>
+  </button>
+
+  <!-- Bookmarks drawer -->
+  @if (bookmarksOpen()) {
+    <div class="r-drawer">
+      <div class="r-drawer__head">
+        <h6><i class="bi bi-bookmarks me-2"></i>Your bookmarks</h6>
+        <button class="r-btn" (click)="bookmarksOpen.set(false)" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+      </div>
+      @if (bookmarks().length) {
+        <ul class="r-drawer__list">
+          @for (b of bookmarks(); track b.id) {
+            <li>
+              <button (click)="jump(b.id); bookmarksOpen.set(false)">{{ b.label }}</button>
+              <button class="r-drawer__x" (click)="toggleBookmark()" aria-label="Remove"><i class="bi bi-trash3"></i></button>
+            </li>
+          }
+        </ul>
+      } @else {
+        <p class="r-drawer__empty">No bookmarks yet. Tap <i class="bi bi-bookmark-heart"></i> on any section to find your way back in one tap.</p>
+      }
+      <div class="r-drawer__foot">Highlights &amp; annotations sync across all your devices.</div>
+    </div>
+    <div class="r-scrim" (click)="bookmarksOpen.set(false)"></div>
+  }
+</div>
