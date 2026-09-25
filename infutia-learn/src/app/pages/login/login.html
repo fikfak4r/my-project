@@ -1,0 +1,228 @@
+<div class="il-auth">
+  <!-- Brand rail (desktop) -->
+  <aside class="il-auth__brand d-none d-lg-flex">
+    <a routerLink="/" class="il-auth__logo">
+      <span class="il-auth__mark">i</span> Infutia<span class="text-brand">Learn</span>
+    </a>
+    <div class="il-auth__pitch">
+      <h1 class="il-auth__headline">Welcome back, wordsmith.</h1>
+      <p class="il-auth__sub">
+        Your desk, your readers, your royalties — one login away. Publish in Markdown,
+        get a premium reading home without building a website.
+      </p>
+      <ul class="il-auth__list">
+        <li><i class="bi bi-pencil-square"></i> Write &amp; import PDF / Word in minutes</li>
+        <li><i class="bi bi-shield-lock"></i> Streamed reading — nothing to pirate</li>
+        <li><i class="bi bi-people"></i> Grow followers and build your community</li>
+      </ul>
+    </div>
+    <figure class="il-auth__quote">
+      <blockquote>"I replaced my whole website with an Infutia profile. Readers stay three times longer."</blockquote>
+      <figcaption>
+        <span class="il-auth__mini-avatar" style="--from:#7c5cff; --to:#ff6ec7">ZO</span>
+        Zara Okafor · Product &amp; Growth Author
+      </figcaption>
+    </figure>
+  </aside>
+
+  <!-- Form panel -->
+  <main class="il-auth__panel">
+    <a routerLink="/" class="il-auth__logo il-auth__logo--mobile d-lg-none">
+      <span class="il-auth__mark">i</span> Infutia<span class="text-brand">Learn</span>
+    </a>
+
+    <div class="il-auth__card">
+      <div class="il-auth__tabs" role="tablist">
+        <button
+          type="button"
+          role="tab"
+          class="il-auth__tab"
+          [class.is-active]="mode() === 'signin'"
+          (click)="switchMode('signin')"
+        >Sign in</button>
+        <button
+          type="button"
+          role="tab"
+          class="il-auth__tab"
+          [class.is-active]="mode() === 'signup'"
+          (click)="switchMode('signup')"
+        >Become an Author</button>
+      </div>
+
+      @if (error(); as err) {
+        <div class="il-auth__alert il-auth__alert--error" role="alert">
+          <i class="bi bi-exclamation-triangle-fill"></i> {{ err }}
+        </div>
+      }
+      @if (notice(); as note) {
+        <div class="il-auth__alert il-auth__alert--info" role="status">
+          <i class="bi bi-envelope-check"></i> {{ note }}
+        </div>
+      }
+
+      <!-- SIGN IN -->
+      @if (mode() === 'signin') {
+        <form [formGroup]="signinForm" (ngSubmit)="submit()" novalidate>
+          <h2 class="il-auth__title">Author sign in</h2>
+          <p class="il-auth__hint">Readers never see this door — it's just for creators.</p>
+
+          <label class="form-label il-auth__label" for="si-email">Email address</label>
+          <div class="input-group il-auth__field">
+            <span class="input-group-text"><i class="bi bi-at"></i></span>
+            <input
+              id="si-email"
+              type="email"
+              class="form-control"
+              formControlName="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              [class.is-invalid]="invalid('email')"
+            />
+          </div>
+          @if (invalid('email')) {
+            <div class="il-auth__field-error">
+              {{ signinForm.get('email')?.errors?.['required'] ? 'We need your email.' : 'That does not look like a valid email.' }}
+            </div>
+          }
+
+          <label class="form-label il-auth__label" for="si-pass">Password</label>
+          <div class="input-group il-auth__field">
+            <span class="input-group-text"><i class="bi bi-key"></i></span>
+            <input
+              id="si-pass"
+              [type]="showPassword() ? 'text' : 'password'"
+              class="form-control"
+              formControlName="password"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              [class.is-invalid]="invalid('password')"
+            />
+            <button
+              type="button"
+              class="btn il-auth__eye"
+              (click)="showPassword.set(!showPassword())"
+              [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
+            >
+              <i class="bi" [class.bi-eye-slash]="!showPassword()" [class.bi-eye]="showPassword()"></i>
+            </button>
+          </div>
+          @if (invalid('password')) {
+            <div class="il-auth__field-error">Passwords are at least 6 characters.</div>
+          }
+
+          <div class="il-auth__row">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="si-remember" formControlName="remember" />
+              <label class="form-check-label" for="si-remember">Keep me signed in</label>
+            </div>
+            <button type="button" class="btn btn-link p-0 il-auth__link" (click)="forgot()">Forgot password?</button>
+          </div>
+
+          <button type="submit" class="btn il-auth__submit w-100" [disabled]="submitting()">
+            @if (submitting()) {
+              <span class="spinner-border spinner-border-sm me-2" role="status"></span>Signing you in…
+            } @else {
+              <i class="bi bi-box-arrow-in-right me-2"></i>Enter my studio
+            }
+          </button>
+
+          <div class="il-auth__demo">
+            <div class="il-auth__demo-copy">
+              <strong>Demo author:</strong> zara&#64;infutia.com / infutia2026
+            </div>
+            <button type="button" class="btn il-auth__demo-btn" (click)="useDemo()">
+              <i class="bi bi-lightning-charge-fill"></i> Use demo
+            </button>
+          </div>
+
+          <div class="il-auth__social-sep"><span>or continue with</span></div>
+          <div class="d-grid gap-2 d-md-flex il-auth__social">
+            <button type="button" class="btn il-auth__social-btn"><i class="bi bi-google"></i> Google</button>
+            <button type="button" class="btn il-auth__social-btn"><i class="bi bi-github"></i> GitHub</button>
+          </div>
+        </form>
+      }
+
+      <!-- SIGN UP -->
+      @if (mode() === 'signup') {
+        <form [formGroup]="signupForm" (ngSubmit)="submit()" novalidate>
+          <h2 class="il-auth__title">Create your author account</h2>
+          <p class="il-auth__hint">
+            Private by default. Your profile only goes public when <em>you</em> choose —
+            and after your first product is live.
+          </p>
+
+          <label class="form-label il-auth__label" for="su-name">Pen name / full name</label>
+          <div class="input-group il-auth__field">
+            <span class="input-group-text"><i class="bi bi-person"></i></span>
+            <input id="su-name" type="text" class="form-control" formControlName="name"
+                   placeholder="e.g. Ada Writer" autocomplete="name" [class.is-invalid]="invalid('name')" />
+          </div>
+          @if (invalid('name')) {
+            <div class="il-auth__field-error">Tell us what your readers should call you.</div>
+          }
+
+          <label class="form-label il-auth__label" for="su-email">Email address</label>
+          <div class="input-group il-auth__field">
+            <span class="input-group-text"><i class="bi bi-at"></i></span>
+            <input id="su-email" type="email" class="form-control" formControlName="email"
+                   placeholder="you@example.com" autocomplete="email" [class.is-invalid]="invalid('email')" />
+          </div>
+          @if (invalid('email')) {
+            <div class="il-auth__field-error">A valid email keeps your receipts safe.</div>
+          }
+
+          <label class="form-label il-auth__label" for="su-pass">Password</label>
+          <div class="input-group il-auth__field">
+            <span class="input-group-text"><i class="bi bi-key"></i></span>
+            <input id="su-pass" [type]="showPassword() ? 'text' : 'password'" class="form-control"
+                   formControlName="password" placeholder="8+ characters" autocomplete="new-password"
+                   [class.is-invalid]="invalid('password')" />
+            <button type="button" class="btn il-auth__eye" (click)="showPassword.set(!showPassword())"
+                    [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'">
+              <i class="bi" [class.bi-eye-slash]="!showPassword()" [class.bi-eye]="showPassword()"></i>
+            </button>
+          </div>
+          @if (invalid('password')) {
+            <div class="il-auth__field-error">Use at least 8 characters — longer is stronger.</div>
+          }
+
+          <div class="form-check mt-3 il-auth__terms">
+            <input class="form-check-input" type="checkbox" id="su-terms" formControlName="terms" />
+            <label class="form-check-label" for="su-terms">
+              I agree to the <a class="il-auth__link" routerLink="/how-it-works">Author Terms</a> and understand my
+              work stays mine — Infutia only streams it.
+            </label>
+          </div>
+
+          <button type="submit" class="btn il-auth__submit w-100 mt-3" [disabled]="submitting()">
+            @if (submitting()) {
+              <span class="spinner-border spinner-border-sm me-2" role="status"></span>Creating your studio…
+            } @else {
+              <i class="bi bi-rocket-takeoff me-2"></i>Start writing free
+            }
+          </button>
+          <p class="il-auth__fineprint">Free forever to start · No card required · Cancel any time</p>
+        </form>
+      }
+
+      <p class="il-auth__swap text-center">
+        @if (mode() === 'signin') {
+          New to Infutia?
+          <button type="button" class="btn btn-link p-0 il-auth__link" (click)="switchMode('signup')">
+            Become an Author
+          </button>
+        } @else {
+          Already have an account?
+          <button type="button" class="btn btn-link p-0 il-auth__link" (click)="switchMode('signin')">
+            Sign in
+          </button>
+        }
+      </p>
+    </div>
+
+    <p class="il-auth__foot text-center">
+      Just here to read? <a routerLink="/courses" class="il-auth__link">Browse the Courses page →</a>
+    </p>
+  </main>
+</div>

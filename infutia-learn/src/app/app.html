@@ -1,7 +1,11 @@
 <div class="app-shell">
-  <app-navbar />
-  <main>
+  @if (chromeless()) {
     <router-outlet />
-  </main>
-  <app-footer />
+  } @else {
+    <app-navbar />
+    <main>
+      <router-outlet />
+    </main>
+    <app-footer />
+  }
 </div>
