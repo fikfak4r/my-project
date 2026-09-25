@@ -88,6 +88,35 @@ export class AuthService {
     this.router.navigate(['/authors', s.authorId]);
   }
 
+  /* ── Portal helpers (demo metrics derived from seeded data) ───────── */
+
+  /** Products authored by the current session user (empty for fresh sign-ups). */
+  myProducts() {
+    const s = this._session();
+    return s ? this.data.authorProducts(s.authorId) : [];
+  }
+
+  /** Total readers across the author's catalogue. */
+  totalReaders(): number {
+    return this.myProducts().reduce((sum, p) => sum + p.readers, 0);
+  }
+
+  /** Follower count from the author record (seeded estimate for new accounts). */
+  followerCount(): number {
+    const s = this._session();
+    if (!s) return 0;
+    const a = this.data.authorById(s.authorId);
+    return a ? a.followers : 12;
+  }
+
+  /** Estimated royalties: NGN 350 per paid read, free products excluded. */
+  estimatedEarnings(): number {
+    return this.myProducts().reduce(
+      (sum, p) => sum + (p.price > 0 ? Math.round(p.readers * 0.18) * 350 : 0),
+      0
+    );
+  }
+
   private buildSession(authorId: string, email: string): SessionUser {
     const author: Author | undefined = this.data.authorById(authorId);
     if (author) {

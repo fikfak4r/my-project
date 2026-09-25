@@ -73,8 +73,22 @@ export class Login {
       const { email, password } = this.signinForm.value;
       const res = this.auth.login(email, password);
       this.submitting.set(false);
-      if (res.ok) this.router.navigate(['/authors', this.auth.session()?.authorId ?? '']);
-      else this.error.set(res.error ?? 'Something went wrong. Please try again.');
+      if (res.ok) {
+        // Return the author to wherever the guard bounced them from (e.g. /studio).
+        let target = '/studio';
+        try {
+          const saved = sessionStorage.getItem('infutia-redirect');
+          if (saved) {
+            target = saved;
+            sessionStorage.removeItem('infutia-redirect');
+          }
+        } catch {
+          /* SSR-safe */
+        }
+        this.router.navigate([target]);
+      } else {
+        this.error.set(res.error ?? 'Something went wrong. Please try again.');
+      }
     } else {
       if (this.signupForm.invalid) {
         this.signupForm.markAllAsTouched();
