@@ -1,0 +1,596 @@
+@use 'styles/tokens' as *;
+
+.il-studio {
+  min-height: 100vh;
+  background: $il-mist;
+  font-family: $il-font-body;
+  color: $il-ink;
+  padding-bottom: 4rem;
+
+  /* ── Top bar ─────────────────────────────────── */
+  &__bar {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid $il-line;
+  }
+
+  &__bar-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem clamp(1rem, 3vw, 2rem);
+    max-width: 1240px;
+    margin-inline: auto;
+  }
+
+  &__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: $il-ink;
+    flex-shrink: 0;
+  }
+
+  &__mark {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    color: #fff;
+    background: $il-gradient-brand;
+    font-size: 1rem;
+  }
+
+  &__brand-name {
+    font-family: $il-font-display;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+
+    em {
+      font-style: normal;
+      background: $il-gradient-brand;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    small {
+      font-family: $il-font-body;
+      font-weight: 600;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: $il-ink-soft;
+      margin-left: 0.35rem;
+    }
+  }
+
+  &__tabs {
+    display: flex;
+    gap: 0.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    flex: 1;
+    justify-content: flex-end;
+
+    &::-webkit-scrollbar { display: none; }
+
+    @include il-below(md) {
+      order: 3;
+      width: 100%;
+      justify-content: flex-start;
+      padding-bottom: 0.25rem;
+    }
+  }
+
+  &__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    border: 0;
+    background: transparent;
+    color: $il-ink-soft;
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 0.5rem 0.85rem;
+    border-radius: 999px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+
+    &:hover { color: $il-primary-deep; background: rgba($il-primary, 0.07); }
+
+    &.is-active {
+      color: #fff;
+      background: $il-gradient-brand;
+      box-shadow: $il-shadow-sm;
+    }
+
+    @include il-below(sm) {
+      span { display: none; }
+      padding: 0.5rem 0.7rem;
+      font-size: 1.05rem;
+    }
+  }
+
+  &__me {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  &__avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-decoration: none;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.6), $il-shadow-sm;
+  }
+
+  &__out {
+    border: 1px solid $il-line;
+    background: #fff;
+    color: $il-ink-soft;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    transition: color 0.2s, border-color 0.2s;
+
+    &:hover { color: #e0356b; border-color: #e0356b; }
+  }
+
+  /* ── Greeting ────────────────────────────────── */
+  &__eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: $il-primary-deep;
+    margin-bottom: 0.25rem;
+  }
+
+  &__hello {
+    font-family: $il-font-display;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  /* ── Buttons ─────────────────────────────────── */
+  &__btn-primary {
+    background: $il-gradient-brand;
+    color: #fff;
+    border: 0;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.6rem 1.25rem;
+    box-shadow: $il-shadow;
+    transition: transform 0.15s, box-shadow 0.2s;
+
+    &:hover, &:focus-visible {
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: $il-shadow-lg;
+    }
+  }
+
+  &__btn-ghost {
+    background: #fff;
+    color: $il-ink;
+    border: 1px solid $il-line;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.55rem 1.1rem;
+    transition: border-color 0.2s, color 0.2s;
+
+    &:hover, &:focus-visible {
+      border-color: $il-primary;
+      color: $il-primary-deep;
+    }
+  }
+
+  &__fallback {
+    min-height: 70vh;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    gap: 1rem;
+    background: $il-mist;
+    font-family: $il-font-body;
+  }
+}
+
+/* ── Stat cards ──────────────────────────────────── */
+.il-stat {
+  background: $il-surface;
+  border: 1px solid $il-line;
+  border-radius: $il-radius;
+  padding: 1.1rem 1.2rem;
+  box-shadow: $il-shadow-sm;
+  height: 100%;
+
+  &__icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    display: grid;
+    place-items: center;
+    font-size: 1.05rem;
+    color: var(--tint, $il-primary);
+    background: color-mix(in srgb, var(--tint, #{$il-primary}) 12%, white);
+    margin-bottom: 0.7rem;
+  }
+
+  &__value {
+    font-family: $il-font-display;
+    font-weight: 700;
+    font-size: 1.55rem;
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 1.15;
+
+    &--sm { font-size: 1.1rem; }
+  }
+
+  &__label {
+    font-size: 0.78rem;
+    color: $il-ink-soft;
+    margin: 0.15rem 0 0;
+  }
+}
+
+/* ── Panels ──────────────────────────────────────── */
+.il-panel {
+  background: $il-surface;
+  border: 1px solid $il-line;
+  border-radius: $il-radius-lg;
+  padding: clamp(1.1rem, 2.5vw, 1.6rem);
+  box-shadow: $il-shadow-sm;
+
+  &--tinted {
+    background: linear-gradient(160deg, rgba($il-primary, 0.06), rgba($il-accent, 0.05));
+  }
+
+  h2 {
+    font-family: $il-font-display;
+    font-size: 1.12rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.1rem;
+  }
+
+  &__badge {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: $il-primary-deep;
+    background: rgba($il-primary, 0.1);
+    border-radius: 999px;
+    padding: 0.3rem 0.7rem;
+  }
+
+  &__copy {
+    color: $il-ink-soft;
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+}
+
+/* ── Chart (pure CSS) ────────────────────────────── */
+.il-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(0.5rem, 2vw, 1.1rem);
+  height: 150px;
+  padding-top: 0.5rem;
+
+  &__col {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+
+    span {
+      display: block;
+      width: 100%;
+      border-radius: 8px 8px 4px 4px;
+      background: $il-gradient-brand;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+
+    &:hover span { opacity: 1; }
+  }
+
+  &__legend {
+    display: flex;
+    gap: clamp(0.5rem, 2vw, 1.1rem);
+    margin-top: 0.5rem;
+
+    span {
+      flex: 1;
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: $il-ink-soft;
+    }
+  }
+}
+
+/* ── Composer drawer ─────────────────────────────── */
+.il-composer {
+  margin-top: 1.4rem;
+  background: $il-surface;
+  border: 1px solid $il-line;
+  border-left: 4px solid transparent;
+  border-image: $il-gradient-brand 1;
+  border-radius: $il-radius;
+  padding: clamp(1.1rem, 2.5vw, 1.6rem);
+  box-shadow: $il-shadow;
+
+  &__label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $il-ink-soft;
+    margin-bottom: 0.35rem;
+  }
+
+  &__input {
+    border-radius: 12px;
+    border-color: $il-line;
+    font-size: 0.95rem;
+
+    &:focus {
+      border-color: $il-primary;
+      box-shadow: 0 0 0 0.18rem rgba($il-primary, 0.15);
+    }
+  }
+
+  &__formats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  &__fmt {
+    border: 1px solid $il-line;
+    background: #fff;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: $il-ink-soft;
+    padding: 0.42rem 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    i { margin-right: 0.3rem; }
+
+    &:hover { border-color: $il-primary; color: $il-primary-deep; }
+
+    &.is-active {
+      background: $il-gradient-brand;
+      border-color: transparent;
+      color: #fff;
+    }
+  }
+
+  &__area {
+    width: 100%;
+    border: 1px solid $il-line;
+    border-radius: 12px;
+    padding: 0.9rem 1rem;
+    font-family: $il-font-mono;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: $il-ink;
+    background: $il-mist;
+    resize: vertical;
+
+    &:focus {
+      outline: none;
+      border-color: $il-primary;
+      box-shadow: 0 0 0 0.18rem rgba($il-primary, 0.15);
+    }
+  }
+}
+
+/* ── Products table ──────────────────────────────── */
+.il-table {
+  margin-bottom: 0;
+
+  th {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $il-ink-soft;
+    border-bottom: 1px solid $il-line;
+    font-weight: 700;
+  }
+
+  td {
+    border-color: $il-line;
+    vertical-align: middle;
+  }
+
+  &__cover {
+    width: 44px;
+    height: 56px;
+    border-radius: 8px;
+    display: inline-grid;
+    place-items: center;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 1.15rem;
+    box-shadow: $il-shadow-sm;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  &__sub {
+    font-size: 0.76rem;
+    color: $il-ink-soft;
+  }
+
+  &__star { color: $il-gold; font-size: 0.8rem; }
+}
+
+/* ── Empty state ─────────────────────────────────── */
+.il-empty {
+  text-align: center;
+  padding: clamp(2rem, 6vw, 3.5rem) 1rem;
+
+  &__icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1rem;
+    border-radius: 20px;
+    display: grid;
+    place-items: center;
+    font-size: 1.6rem;
+    color: #fff;
+    background: $il-gradient-brand;
+    box-shadow: $il-shadow;
+  }
+
+  h3 {
+    font-family: $il-font-display;
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+
+  p {
+    color: $il-ink-soft;
+    max-width: 420px;
+    margin: 0 auto 1.25rem;
+  }
+}
+
+/* ── Followers ───────────────────────────────────── */
+.il-follow-card {
+  height: 100%;
+  border: 1px solid $il-line;
+  border-radius: $il-radius;
+  background: $il-mist;
+  padding: 1.25rem;
+
+  h3 {
+    font-family: $il-font-display;
+    font-size: 1.02rem;
+    font-weight: 700;
+  }
+
+  p { font-size: 0.88rem; color: $il-ink-soft; }
+}
+
+.il-follow-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.7rem;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 600;
+    font-size: 0.88rem;
+
+    small {
+      margin-left: auto;
+      font-weight: 500;
+      color: $il-ink-soft;
+      font-size: 0.74rem;
+    }
+  }
+
+  &__av {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-grid;
+    place-items: center;
+    color: #fff;
+    font-size: 0.66rem;
+    font-weight: 700;
+    background: linear-gradient(120deg, var(--from), var(--to));
+  }
+}
+
+/* ── Switch / settings ───────────────────────────── */
+.il-switch {
+  .form-check-input {
+    cursor: pointer;
+
+    &:checked {
+      background-color: $il-primary;
+      border-color: $il-primary;
+    }
+
+    &:focus { box-shadow: 0 0 0 0.18rem rgba($il-primary, 0.18); }
+  }
+
+  .form-check-label { font-weight: 600; font-size: 0.92rem; }
+}
+
+.il-settings__sub {
+  font-family: $il-font-display;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+/* ── Toast ───────────────────────────────────────── */
+.il-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.4rem;
+  transform: translateX(-50%);
+  z-index: 1080;
+  max-width: min(92vw, 480px);
+  background: $il-night;
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.7rem 1.3rem;
+  box-shadow: $il-shadow-lg;
+  animation: il-toast-in 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+
+  i { color: $il-teal; }
+}
+
+@keyframes il-toast-in {
+  from { opacity: 0; transform: translate(-50%, 12px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}

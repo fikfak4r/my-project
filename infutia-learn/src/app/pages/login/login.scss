@@ -1,0 +1,391 @@
+@use 'styles/tokens' as *;
+
+.il-auth {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  background: $il-mist;
+  font-family: $il-font-body;
+
+  @include il-up(lg) {
+    grid-template-columns: minmax(420px, 46%) 1fr;
+  }
+
+  // ── Brand rail ────────────────────────────────
+  &__brand {
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2.5rem;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    color: #fff;
+    background: $il-gradient-night;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: auto -20% -40% auto;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba($il-primary, 0.45), transparent 65%);
+      pointer-events: none;
+    }
+  }
+
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: $il-font-display;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: inherit;
+    text-decoration: none;
+
+    &--mobile {
+      color: $il-ink;
+      margin: 1.25rem auto 0;
+    }
+  }
+
+  &__mark {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: $il-gradient-brand;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  &__headline {
+    font-family: $il-font-display;
+    font-weight: 500;
+    font-size: clamp(1.9rem, 3vw, 2.6rem);
+    line-height: 1.15;
+    margin-bottom: 0.9rem;
+  }
+
+  &__sub {
+    color: rgba(#fff, 0.72);
+    max-width: 34ch;
+    line-height: 1.65;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    display: grid;
+    gap: 0.7rem;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      color: rgba(#fff, 0.85);
+      font-size: 0.95rem;
+
+      i {
+        color: $il-gold;
+      }
+    }
+  }
+
+  &__quote {
+    margin: 0;
+    padding: 1.1rem 1.25rem;
+    border-left: 3px solid $il-accent;
+    background: rgba(#fff, 0.06);
+    border-radius: 0 $il-radius-sm $il-radius-sm 0;
+
+    blockquote {
+      font-family: $il-font-display;
+      font-style: italic;
+      font-size: 1.02rem;
+      line-height: 1.55;
+      margin-bottom: 0.65rem;
+    }
+
+    figcaption {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.82rem;
+      color: rgba(#fff, 0.65);
+    }
+  }
+
+  &__mini-avatar {
+    display: inline-grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(120deg, var(--from), var(--to));
+  }
+
+  // ── Form panel ────────────────────────────────
+  &__panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1.25rem, 4vw, 3rem);
+  }
+
+  &__card {
+    width: min(440px, 100%);
+    background: $il-surface;
+    border: 1px solid $il-line;
+    border-radius: $il-radius-lg;
+    box-shadow: $il-shadow;
+    padding: clamp(1.4rem, 4vw, 2.25rem);
+  }
+
+  &__tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.35rem;
+    background: rgba($il-primary, 0.07);
+    border-radius: 999px;
+    padding: 0.3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__tab {
+    border: 0;
+    background: transparent;
+    border-radius: 999px;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $il-ink-soft;
+    transition: all 0.2s ease;
+
+    &.is-active {
+      background: $il-surface;
+      color: $il-primary-deep;
+      box-shadow: $il-shadow-sm;
+    }
+  }
+
+  &__title {
+    font-family: $il-font-display;
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: $il-ink;
+    margin-bottom: 0.3rem;
+  }
+
+  &__hint {
+    color: $il-ink-soft;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin-bottom: 1.4rem;
+
+    em { color: $il-primary-deep; font-style: normal; font-weight: 600; }
+  }
+
+  &__label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: $il-ink;
+    margin-bottom: 0.3rem;
+  }
+
+  &__field {
+    margin-bottom: 0.35rem;
+
+    .input-group-text {
+      background: rgba($il-primary, 0.05);
+      border-color: $il-line;
+      color: $il-primary-deep;
+    }
+
+    .form-control {
+      border-color: $il-line;
+      padding: 0.65rem 0.85rem;
+
+      &:focus {
+        border-color: $il-primary;
+        box-shadow: 0 0 0 0.2rem rgba($il-primary, 0.14);
+      }
+
+      &.is-invalid {
+        border-color: #dc4c64;
+      }
+    }
+  }
+
+  &__eye {
+    border: 1px solid $il-line;
+    border-left: 0;
+    border-radius: 0 $il-radius-sm $il-radius-sm 0;
+    color: $il-ink-soft;
+    background: $il-surface;
+  }
+
+  &__field-error {
+    color: #b23a52;
+    font-size: 0.78rem;
+    margin-bottom: 0.6rem;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0.9rem 0 1.2rem;
+    font-size: 0.86rem;
+  }
+
+  &__link {
+    color: $il-primary-deep !important;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: inherit;
+
+    &:hover { text-decoration: underline; }
+  }
+
+  &__submit {
+    background: $il-gradient-brand;
+    color: #fff;
+    font-weight: 700;
+    border: 0;
+    border-radius: 999px;
+    padding: 0.8rem 1.25rem;
+    box-shadow: $il-shadow;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+    &:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: $il-shadow-lg;
+      color: #fff;
+    }
+
+    &:disabled { opacity: 0.75; }
+  }
+
+  &__alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    border-radius: $il-radius-sm;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.86rem;
+    margin-bottom: 1.1rem;
+
+    &--error {
+      background: rgba(#dc4c64, 0.08);
+      color: #8f2c40;
+      border: 1px solid rgba(#dc4c64, 0.25);
+    }
+
+    &--info {
+      background: rgba($il-teal, 0.09);
+      color: #0f6e63;
+      border: 1px solid rgba($il-teal, 0.3);
+    }
+  }
+
+  &__demo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: 1.1rem;
+    padding: 0.7rem 0.85rem;
+    border: 1px dashed rgba($il-primary, 0.4);
+    border-radius: $il-radius-sm;
+    background: rgba($il-primary, 0.04);
+  }
+
+  &__demo-copy {
+    font-size: 0.8rem;
+    color: $il-ink-soft;
+    font-family: $il-font-mono;
+  }
+
+  &__demo-btn {
+    border: 0;
+    background: $il-ink;
+    color: #fff;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.4rem 0.8rem;
+    white-space: nowrap;
+
+    &:hover { color: $il-gold; }
+  }
+
+  &__social-sep {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 1.4rem 0 0.9rem;
+    color: $il-ink-soft;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: $il-line;
+    }
+  }
+
+  &__social-btn {
+    border: 1px solid $il-line;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: $il-ink;
+    background: $il-surface;
+
+    &:hover {
+      border-color: $il-primary;
+      color: $il-primary-deep;
+    }
+  }
+
+  &__terms {
+    font-size: 0.84rem;
+    color: $il-ink-soft;
+    line-height: 1.5;
+  }
+
+  &__fineprint {
+    margin: 0.7rem 0 0;
+    font-size: 0.76rem;
+    color: $il-ink-soft;
+    text-align: center;
+  }
+
+  &__swap {
+    margin: 1.4rem 0 0;
+    font-size: 0.88rem;
+    color: $il-ink-soft;
+  }
+
+  &__foot {
+    margin: 1.4rem 0 0;
+    font-size: 0.84rem;
+    color: $il-ink-soft;
+  }
+}
+
+.text-brand { color: $il-accent; }

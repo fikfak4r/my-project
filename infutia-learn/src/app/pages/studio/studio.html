@@ -1,0 +1,315 @@
+@if (session(); as me) {
+<div class="il-studio">
+  <!-- ── Portal top bar ─────────────────────────────────────── -->
+  <header class="il-studio__bar">
+    <div class="il-studio__bar-inner">
+      <a routerLink="/studio" class="il-studio__brand">
+        <span class="il-studio__mark"><i class="bi bi-triangle-half"></i></span>
+        <span class="il-studio__brand-name">Infutia<em>Learn</em> <small>Studio</small></span>
+      </a>
+
+      <nav class="il-studio__tabs" aria-label="Portal sections">
+        <button type="button" class="il-studio__tab" [class.is-active]="tab() === 'overview'" (click)="setTab('overview')">
+          <i class="bi bi-speedometer2"></i><span>Overview</span>
+        </button>
+        <button type="button" class="il-studio__tab" [class.is-active]="tab() === 'products'" (click)="setTab('products')">
+          <i class="bi bi-journal-bookmark"></i><span>Products</span>
+        </button>
+        <button type="button" class="il-studio__tab" [class.is-active]="tab() === 'followers'" (click)="setTab('followers')">
+          <i class="bi bi-people"></i><span>Followers</span>
+        </button>
+        <button type="button" class="il-studio__tab" [class.is-active]="tab() === 'settings'" (click)="setTab('settings')">
+          <i class="bi bi-sliders"></i><span>Settings</span>
+        </button>
+      </nav>
+
+      <div class="il-studio__me">
+        <a class="il-studio__avatar" [routerLink]="['/authors', me.authorId]"
+           [style.background]="'linear-gradient(120deg,' + me.avatarFrom + ',' + me.avatarTo + ')'"
+           title="View my public profile">{{ me.initials }}</a>
+        <button type="button" class="btn il-studio__out" (click)="signOut()" title="Sign out">
+          <i class="bi bi-box-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container py-4 py-lg-5">
+    <!-- Greeting row -->
+    <div class="il-studio__greet d-flex flex-wrap align-items-center justify-content-between gap-3">
+      <div>
+        <p class="il-studio__eyebrow">{{ isPublic() ? 'Public profile · Live' : 'Private desk · Only you can see this' }}</p>
+        <h1 class="il-studio__hello">Welcome back, {{ me.name.split(' ')[0] }}.</h1>
+      </div>
+      <div class="d-flex gap-2 flex-wrap">
+        <button type="button" class="btn il-studio__btn-ghost" (click)="importDoc()">
+          <i class="bi bi-file-earmark-arrow-up me-1"></i> Import PDF / Word
+        </button>
+        <button type="button" class="btn il-studio__btn-primary" (click)="toggleComposer()">
+          <i class="bi me-1" [class.bi-pencil]="!composerOpen()" [class.bi-x-lg]="composerOpen()"></i>
+          {{ composerOpen() ? 'Close composer' : 'New product' }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Composer drawer -->
+    @if (composerOpen()) {
+      <section class="il-composer">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <label class="form-label il-composer__label" for="cp-title">Working title</label>
+            <input id="cp-title" type="text" class="form-control il-composer__input"
+                   placeholder="e.g. The Quiet Launch Playbook"
+                   [value]="draft().title" (input)="onTitle($event)" />
+
+            <label class="form-label il-composer__label mt-3">Format</label>
+            <div class="il-composer__formats">
+              @for (f of formats; track f.value) {
+                <button type="button" class="il-composer__fmt"
+                        [class.is-active]="draft().format === f.value"
+                        (click)="pickFormat(f.value)">
+                  <i class="bi" [class]="f.icon"></i> {{ f.label }}
+                </button>
+              }
+            </div>
+
+            <label class="form-label il-composer__label mt-3" for="cp-price">Price (NGN · 0 = free)</label>
+            <input id="cp-price" type="number" min="0" step="500" class="form-control il-composer__input"
+                   [value]="draft().price" (input)="onPrice($event)" />
+          </div>
+          <div class="col-lg-6">
+            <label class="form-label il-composer__label" for="cp-body">
+              Chapter one <small class="text-muted">· Infutia Markdown · {{ wordCount() }} words</small>
+            </label>
+            <textarea id="cp-body" class="il-composer__area" rows="9" spellcheck="false"
+                      [value]="draft().body" (input)="onBody($event)"></textarea>
+            <div class="d-flex gap-2 mt-3 flex-wrap">
+              <button type="button" class="btn il-studio__btn-primary" (click)="saveDraft()">
+                <i class="bi bi-save2 me-1"></i> Save draft
+              </button>
+              <button type="button" class="btn il-studio__btn-ghost" (click)="publishDemo()">
+                <i class="bi bi-send me-1"></i> Publish
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    }
+
+    <!-- ── OVERVIEW ──────────────────────────────────────────── -->
+    @if (tab() === 'overview') {
+      <div class="row g-3 g-lg-4 mt-1">
+        <div class="col-6 col-lg-3">
+          <div class="il-stat">
+            <span class="il-stat__icon" style="--tint:#7c5cff"><i class="bi bi-journal-bookmark-fill"></i></span>
+            <p class="il-stat__value">{{ products().length }}</p>
+            <p class="il-stat__label">Published products</p>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="il-stat">
+            <span class="il-stat__icon" style="--tint:#ff6ec7"><i class="bi bi-eye-fill"></i></span>
+            <p class="il-stat__value">{{ compact(readers()) }}</p>
+            <p class="il-stat__label">Readers served</p>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="il-stat">
+            <span class="il-stat__icon" style="--tint:#2dd4bf"><i class="bi bi-people-fill"></i></span>
+            <p class="il-stat__value">{{ compact(followers()) }}</p>
+            <p class="il-stat__label">Followers</p>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="il-stat">
+            <span class="il-stat__icon" style="--tint:#ffb347"><i class="bi bi-cash-coin"></i></span>
+            <p class="il-stat__value il-stat__value--sm">{{ ngn(earnings()) }}</p>
+            <p class="il-stat__label">Est. royalties</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 g-lg-4 mt-1">
+        <div class="col-lg-8">
+          <section class="il-panel">
+            <div class="il-panel__head">
+              <h2><i class="bi bi-graph-up-arrow me-2"></i>Reading activity — last 7 days</h2>
+              <span class="il-panel__badge">+{{ compact(followers() / 100) }}% vs last week</span>
+            </div>
+            <div class="il-chart" role="img" aria-label="Weekly reading activity chart">
+              @for (h of [38, 52, 44, 66, 58, 80, 72]; track $index) {
+                <div class="il-chart__col"><span [style.height.%]="h"></span></div>
+              }
+            </div>
+            <div class="il-chart__legend">
+              <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+            </div>
+          </section>
+        </div>
+        <div class="col-lg-4">
+          <section class="il-panel il-panel--tinted">
+            <h2><i class="bi bi-shield-check me-2"></i>Your visibility</h2>
+            <p class="il-panel__copy">
+              Readers find you only when <strong>you</strong> choose. Flip your profile public after
+              your first product ships.
+            </p>
+            <div class="form-check form-switch il-switch">
+              <input class="form-check-input" type="checkbox" role="switch"
+                     id="vis-toggle" [checked]="isPublic()" (change)="togglePublic()" />
+              <label class="form-check-label" for="vis-toggle">
+                {{ isPublic() ? 'Profile is public' : 'Profile is private' }}
+              </label>
+            </div>
+            @if (isPublic()) {
+              <a class="btn il-studio__btn-ghost w-100 mt-3" [routerLink]="['/authors', me.authorId]">
+                <i class="bi bi-person-view me-1"></i> View public profile
+              </a>
+            }
+          </section>
+        </div>
+      </div>
+    }
+
+    <!-- ── PRODUCTS ──────────────────────────────────────────── -->
+    @if (tab() === 'products') {
+      <section class="il-panel mt-4">
+        <div class="il-panel__head">
+          <h2><i class="bi bi-journals me-2"></i>My catalogue</h2>
+          <button type="button" class="btn il-studio__btn-primary btn-sm" (click)="toggleComposer()">
+            <i class="bi bi-plus-lg me-1"></i> New product
+          </button>
+        </div>
+        @if (products().length === 0) {
+          <div class="il-empty">
+            <span class="il-empty__icon"><i class="bi bi-feather"></i></span>
+            <h3>Your desk is clear — for now.</h3>
+            <p>Write your first product in Markdown or import an old PDF. Readers cannot wait forever.</p>
+            <button type="button" class="btn il-studio__btn-primary" (click)="toggleComposer()">
+              <i class="bi bi-pencil me-1"></i> Start writing
+            </button>
+          </div>
+        } @else {
+          <div class="table-responsive">
+            <table class="table il-table align-middle">
+              <thead>
+                <tr>
+                  <th scope="col">Product</th>
+                  <th scope="col" class="d-none d-md-table-cell">Format</th>
+                  <th scope="col">Readers</th>
+                  <th scope="col" class="d-none d-sm-table-cell">Rating</th>
+                  <th scope="col">Price</th>
+                  <th scope="col"><span class="visually-hidden">Actions</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (p of products(); track p.id) {
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center gap-3">
+                        <span class="il-table__cover"
+                              [style.background]="'linear-gradient(135deg,' + p.coverFrom + ',' + p.coverTo + ')'">
+                          <i class="bi" [class]="p.icon"></i>
+                        </span>
+                        <div>
+                          <p class="il-table__title mb-0">{{ p.title }}</p>
+                          <p class="il-table__sub mb-0">{{ p.chapters }} chapters · {{ p.category }}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="d-none d-md-table-cell text-capitalize"><i class="bi me-1" [class]="fmtIcon(p.format)"></i>{{ p.format }}</td>
+                    <td>{{ compact(p.readers) }}</td>
+                    <td class="d-none d-sm-table-cell"><i class="bi bi-star-fill il-table__star me-1"></i>{{ p.rating }}</td>
+                    <td>{{ p.price === 0 ? 'Free' : ngn(p.price) }}</td>
+                    <td class="text-end">
+                      <a class="btn il-studio__btn-ghost btn-sm" [routerLink]="['/product', p.slug]">
+                        <i class="bi bi-box-arrow-up-right"></i><span class="ms-1 d-none d-lg-inline">Open</span>
+                      </a>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+      </section>
+    }
+
+    <!-- ── FOLLOWERS ─────────────────────────────────────────── -->
+    @if (tab() === 'followers') {
+      <section class="il-panel mt-4">
+        <div class="il-panel__head">
+          <h2><i class="bi bi-people me-2"></i>Community</h2>
+          <span class="il-panel__badge">{{ compact(followers()) }} followers</span>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="il-follow-card">
+              <h3><i class="bi bi-megaphone me-2"></i>Broadcast to followers</h3>
+              <p>Notify every follower the moment you publish — no mailing list surgery required.</p>
+              <button type="button" class="btn il-studio__btn-primary" (click)="publishDemo()">
+                <i class="bi bi-send me-1"></i> Announce next launch
+              </button>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="il-follow-card">
+              <h3><i class="bi bi-heart me-2"></i>Top readers this month</h3>
+              <ul class="il-follow-list">
+                <li><span class="il-follow-list__av" style="--from:#ffb347;--to:#ff7846">AB</span> Ada B. <small>finished 4 chapters</small></li>
+                <li><span class="il-follow-list__av" style="--from:#2dd4bf;--to:#3b82f6">TK</span> Tobi K. <small>highlighted 12 passages</small></li>
+                <li><span class="il-follow-list__av" style="--from:#f472b6;--to:#a78bfa">MZ</span> Mara Z. <small>left 3 annotations</small></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    }
+
+    <!-- ── SETTINGS ──────────────────────────────────────────── -->
+    @if (tab() === 'settings') {
+      <section class="il-panel mt-4">
+        <div class="il-panel__head"><h2><i class="bi bi-sliders me-2"></i>Account</h2></div>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <label class="form-label il-composer__label" for="st-name">Display name</label>
+            <input id="st-name" type="text" class="form-control il-composer__input" [value]="me.name" disabled />
+            <label class="form-label il-composer__label mt-3" for="st-email">Email</label>
+            <input id="st-email" type="email" class="form-control il-composer__input" [value]="me.email" disabled />
+            <p class="il-panel__copy mt-2 mb-0 small">Editing profiles unlocks with the authoring API.</p>
+          </div>
+          <div class="col-md-6">
+            <h3 class="il-settings__sub"><i class="bi bi-eye me-2"></i>Visibility</h3>
+            <div class="form-check form-switch il-switch">
+              <input class="form-check-input" type="checkbox" role="switch"
+                     id="st-vis" [checked]="isPublic()" (change)="togglePublic()" />
+              <label class="form-check-label" for="st-vis">
+                Let readers discover my profile &amp; products
+              </label>
+            </div>
+            <p class="il-panel__copy">
+              Off means invisible: your desk stays private until you publish and opt in. Always your call.
+            </p>
+            <hr class="my-4" />
+            <button type="button" class="btn il-studio__btn-ghost" (click)="signOut()">
+              <i class="bi bi-box-arrow-right me-1"></i> Sign out of Studio
+            </button>
+          </div>
+        </div>
+      </section>
+    }
+  </main>
+
+  <!-- Toast -->
+  @if (toast(); as msg) {
+    <div class="il-toast" role="status">
+      <i class="bi bi-check-circle-fill me-2"></i>{{ msg }}
+    </div>
+  }
+</div>
+} @else {
+  <!-- Guard should prevent this; graceful fallback anyway -->
+  <div class="il-studio__fallback">
+    <h1>You are signed out.</h1>
+    <a class="btn il-studio__btn-primary" routerLink="/login">Back to author login</a>
+  </div>
+}
