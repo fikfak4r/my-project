@@ -12,7 +12,7 @@
 
   .md-h1 {
     font-family: t.$il-font-display;
-    font-weight: 800;
+    font-weight: 600;
     font-size: clamp(1.7rem, 4.5vw, 2.3rem);
     letter-spacing: -0.02em;
     margin: 0 0 1rem;
@@ -21,7 +21,7 @@
 
   .md-h2 {
     font-family: t.$il-font-display;
-    font-weight: 700;
+    font-weight: 600;
     font-size: clamp(1.35rem, 3.5vw, 1.7rem);
     letter-spacing: -0.015em;
     margin: 2.4rem 0 0.9rem;
@@ -32,9 +32,9 @@
     &::before {
       content: '';
       display: block;
-      width: 44px;
-      height: 4px;
-      border-radius: 4px;
+      width: 36px;
+      height: 2px;
+      border-radius: 0;
       margin-bottom: 0.7rem;
       background: t.$il-gradient-brand;
     }
@@ -42,7 +42,7 @@
 
   .md-h3 {
     font-family: t.$il-font-display;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 1.2rem;
     margin: 1.8rem 0 0.6rem;
     color: var(--il-heading, #{t.$il-ink});
@@ -55,7 +55,7 @@
   .md-code {
     font-family: t.$il-font-mono;
     font-size: 0.86em;
-    background: var(--il-chip, rgba(124, 92, 255, 0.1));
+    background: var(--il-chip, rgba(47, 90, 168, 0.1));
     color: var(--il-code-text, #{t.$il-primary-deep});
     padding: 0.15em 0.45em;
     border-radius: 6px;
@@ -65,8 +65,8 @@
     font-family: t.$il-font-mono;
     font-size: 0.85rem;
     line-height: 1.7;
-    background: #17131f;
-    color: #e9e4ff;
+    background: #1f2937;
+    color: #eef2f8;
     border-radius: t.$il-radius;
     padding: 1.2rem 1.4rem;
     overflow-x: auto;
@@ -78,13 +78,13 @@
     color: var(--il-accent-c, #{t.$il-primary-deep});
     font-weight: 600;
     text-decoration: underline;
-    text-decoration-color: rgba(124, 92, 255, 0.4);
+    text-decoration-color: rgba(47, 90, 168, 0.4);
     text-underline-offset: 3px;
   }
 
   // ==highlighted sentence==
   .md-mark {
-    background: linear-gradient(120deg, rgba(255, 179, 71, 0.4), rgba(255, 110, 199, 0.35));
+    background: linear-gradient(120deg, rgba(176, 141, 79, 0.4), rgba(74, 123, 200, 0.35));
     color: inherit;
     padding: 0.1em 0.3em;
     border-radius: 6px;
@@ -95,22 +95,22 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 0.92em;
-    color: #fff;
-    background: t.$il-gradient-brand;
-    border-radius: 999px;
-    padding: 0.45em 1em;
+    color: t.$il-primary-deep;
+    background: rgba(47, 90, 168, 0.07);
+    border: 1px solid rgba(47, 90, 168, 0.28);
+    border-radius: t.$il-radius-sm;
+    padding: 0.4em 0.9em;
     margin: 0.6rem 0;
-    box-shadow: 0 8px 20px rgba(124, 92, 255, 0.35);
+    box-shadow: none;
   }
 
   .md-quote {
     margin: 1.6rem 0;
     padding: 1rem 1.4rem;
-    border-left: 4px solid transparent;
-    border-image: t.$il-gradient-brand 1;
-    background: var(--il-chip, rgba(124, 92, 255, 0.06));
+    border-left: 3px solid t.$il-primary;
+    background: var(--il-chip, rgba(47, 90, 168, 0.06));
     border-radius: 0 t.$il-radius t.$il-radius 0;
     font-family: t.$il-font-display;
     font-style: italic;
@@ -130,7 +130,7 @@
       content: '';
       flex: 1;
       height: 1px;
-      background: linear-gradient(90deg, transparent, #a78bfa, transparent);
+      background: linear-gradient(90deg, transparent, #b9c8de, transparent);
     }
   }
 
@@ -140,7 +140,7 @@
     display: grid;
     gap: 0.45rem;
 
-    li::marker { color: t.$il-primary; font-weight: 700; }
+    li::marker { color: t.$il-primary; font-weight: 600; }
   }
 
   .md-checklist {
@@ -168,7 +168,7 @@
     height: 24px;
     margin-top: 0.15rem;
     border-radius: 8px;
-    border: 2px solid #c9bef5;
+    border: 2px solid #b9c8de;
     display: grid;
     place-items: center;
     font-size: 0.85rem;
@@ -177,8 +177,8 @@
   }
 
   .is-done .md-check__box {
-    background: t.$il-gradient-brand;
-    border-color: transparent;
+    background: t.$il-primary-deep;
+    border-color: t.$il-primary-deep;
   }
 
   // ::: tip | note | warn callouts ("Infusion blocks")
@@ -192,7 +192,7 @@
       display: flex;
       align-items: center;
       gap: 0.55rem;
-      font-weight: 800;
+      font-weight: 600;
       font-size: 0.82rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -202,19 +202,19 @@
     &__body { font-size: 0.98rem; line-height: 1.7; }
 
     &--tip {
-      background: rgba(45, 212, 191, 0.08);
-      border-color: rgba(45, 212, 191, 0.35);
-      .md-callout__head { color: #0d9488; }
+      background: rgba(62, 124, 140, 0.06);
+      border-color: rgba(62, 124, 140, 0.3);
+      .md-callout__head { color: #33697a; }
     }
     &--note {
-      background: rgba(124, 92, 255, 0.07);
-      border-color: rgba(124, 92, 255, 0.3);
+      background: rgba(47, 90, 168, 0.05);
+      border-color: rgba(47, 90, 168, 0.25);
       .md-callout__head { color: t.$il-primary-deep; }
     }
     &--warn {
-      background: rgba(255, 179, 71, 0.12);
-      border-color: rgba(255, 150, 60, 0.4);
-      .md-callout__head { color: #c2620a; }
+      background: rgba(176, 141, 79, 0.08);
+      border-color: rgba(176, 141, 79, 0.35);
+      .md-callout__head { color: #8a6a34; }
     }
   }
 }
@@ -230,11 +230,11 @@
 
 [data-theme='midnight'] {
   --il-text: #cfc9e2;
-  --il-heading: #f3efff;
+  --il-heading: #eef2f8;
   --il-chip: rgba(167, 139, 250, 0.16);
-  --il-code-text: #c4b5fd;
-  --il-accent-c: #a78bfa;
+  --il-code-text: #dbe4f0;
+  --il-accent-c: #4a7bc8;
 
   .md-quote { background: rgba(167, 139, 250, 0.08); }
-  .md-mark { background: linear-gradient(120deg, rgba(255, 179, 71, 0.35), rgba(255, 110, 199, 0.3)); }
+  .md-mark { background: linear-gradient(120deg, rgba(176, 141, 79, 0.35), rgba(74, 123, 200, 0.3)); }
 }

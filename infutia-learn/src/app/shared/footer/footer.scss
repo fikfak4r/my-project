@@ -17,7 +17,7 @@
 
   ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
   a:not(.navbar-brand) { color: rgba(255, 255, 255, 0.65); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
-  a:not(.navbar-brand):hover { color: #f0abfc; }
+  a:not(.navbar-brand):hover { color: #8fa9cc; }
 }
 
 .il-footer__tag { font-size: 0.92rem; line-height: 1.7; max-width: 34ch; }
@@ -31,7 +31,7 @@
   input {
     flex: 1;
     min-width: 0;
-    border-radius: 999px;
+    border-radius: $il-radius-sm;
     border: 1px solid rgba(255, 255, 255, 0.15);
     background: rgba(255, 255, 255, 0.06);
     color: #fff;
@@ -53,7 +53,7 @@
   font-size: 1rem;
   transition: all 0.2s;
 
-  &:hover { background: $il-gradient-brand; border-color: transparent; color: #fff; transform: translateY(-2px); }
+  &:hover { background: $il-gradient-brand; border-color: transparent; color: #fff; transform: none; }
 }
 
 .il-footer__bottom {
@@ -63,4 +63,4 @@
   small { color: rgba(255, 255, 255, 0.45); }
 }
 
-.brand-name em { color: #c4b5fd; }
+.brand-name em { color: #dbe4f0; }

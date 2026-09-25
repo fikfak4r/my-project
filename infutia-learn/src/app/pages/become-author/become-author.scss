@@ -1,6 +1,6 @@
 @use 'styles/tokens' as *;
 
-.ba-hero { padding-block: 3rem 1rem; background: radial-gradient(50% 70% at 90% 10%, rgba(124, 92, 255, 0.1), transparent), $il-mist; }
+.ba-hero { padding-block: 3rem 1rem; background: radial-gradient(50% 70% at 90% 10%, rgba(47, 90, 168, 0.1), transparent), $il-mist; }
 .ba-hero__proof span { font-size: 0.92rem; color: $il-ink-soft; strong { color: $il-ink; font-family: $il-font-display; font-size: 1.15rem; margin-right: 0.3rem; } }
 
 .ba-form {
@@ -8,11 +8,11 @@
   border: 1px solid $il-line;
   border-radius: $il-radius-xl;
   padding: 2rem 1.5rem;
-  box-shadow: $il-shadow;
+  box-shadow: none;
 
   @include il-up(md) { padding: 2.4rem 2.2rem; }
 
-  h3 { font-family: $il-font-display; font-weight: 800; }
+  h3 { font-family: $il-font-display; font-weight: 600; }
 }
 
 .ba-field {
@@ -27,7 +27,7 @@
     padding: 0.75rem 1rem;
     font-size: 0.95rem;
     transition: all 0.2s;
-    &:focus { outline: none; border-color: $il-primary; box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.12); }
+    &:focus { outline: none; border-color: $il-primary; box-shadow: 0 0 0 4px rgba(47, 90, 168, 0.12); }
   }
 }
 
@@ -44,9 +44,9 @@
   padding: 1.7rem 1.5rem;
   transition: transform 0.25s, box-shadow 0.25s;
 
-  &:hover { transform: translateY(-5px); box-shadow: $il-shadow; }
-  &__icon { display: inline-grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: rgba(124, 92, 255, 0.1); color: $il-primary-deep; font-size: 1.25rem; }
-  h5 { font-family: $il-font-display; font-weight: 800; margin: 0.9rem 0 0.4rem; }
+  &:hover { transform: none; box-shadow: none; }
+  &__icon { display: inline-grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: rgba(47, 90, 168, 0.1); color: $il-primary-deep; font-size: 1.25rem; }
+  h5 { font-family: $il-font-display; font-weight: 600; margin: 0.9rem 0 0.4rem; }
   p { font-size: 0.9rem; color: $il-ink-soft; line-height: 1.65; margin: 0; }
 }
 
@@ -54,7 +54,7 @@
 
 .ba-step {
   background: #fff;
-  border: 1px dashed rgba(124, 92, 255, 0.4);
+  border: 1px dashed rgba(47, 90, 168, 0.4);
   border-radius: $il-radius-lg;
   padding: 2rem 1.4rem 1.6rem;
   text-align: center;
@@ -64,9 +64,9 @@
     display: inline-grid; place-items: center;
     width: 44px; height: 44px; border-radius: 50%;
     background: $il-gradient-brand; color: #fff;
-    font-family: $il-font-display; font-weight: 800; font-size: 1.1rem;
+    font-family: $il-font-display; font-weight: 600; font-size: 1.1rem;
     margin-bottom: 0.8rem;
   }
-  h5 { font-family: $il-font-display; font-weight: 800; }
+  h5 { font-family: $il-font-display; font-weight: 600; }
   p { font-size: 0.88rem; color: $il-ink-soft; margin: 0; }
 }

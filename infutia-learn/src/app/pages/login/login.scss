@@ -18,7 +18,7 @@
     gap: 2.5rem;
     padding: clamp(2rem, 4vw, 3.5rem);
     color: #fff;
-    background: $il-gradient-night;
+    background: $il-night;
     position: relative;
     overflow: hidden;
 
@@ -128,7 +128,7 @@
     font-size: 0.68rem;
     font-weight: 700;
     color: #fff;
-    background: linear-gradient(120deg, var(--from), var(--to));
+    background: linear-gradient(150deg, var(--from), var(--to));
   }
 
   // ── Form panel ────────────────────────────────
@@ -145,7 +145,7 @@
     background: $il-surface;
     border: 1px solid $il-line;
     border-radius: $il-radius-lg;
-    box-shadow: $il-shadow;
+    box-shadow: none;
     padding: clamp(1.4rem, 4vw, 2.25rem);
   }
 
@@ -154,7 +154,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 0.35rem;
     background: rgba($il-primary, 0.07);
-    border-radius: 999px;
+    border-radius: $il-radius-sm;
     padding: 0.3rem;
     margin-bottom: 1.5rem;
   }
@@ -162,7 +162,7 @@
   &__tab {
     border: 0;
     background: transparent;
-    border-radius: 999px;
+    border-radius: $il-radius-sm;
     padding: 0.55rem 0.75rem;
     font-size: 0.9rem;
     font-weight: 600;
@@ -220,7 +220,7 @@
       }
 
       &.is-invalid {
-        border-color: #dc4c64;
+        border-color: #b3564e;
       }
     }
   }
@@ -234,7 +234,7 @@
   }
 
   &__field-error {
-    color: #b23a52;
+    color: #8f443d;
     font-size: 0.78rem;
     margin-bottom: 0.6rem;
   }
@@ -262,14 +262,15 @@
     color: #fff;
     font-weight: 700;
     border: 0;
-    border-radius: 999px;
+    border-radius: $il-radius-sm;
     padding: 0.8rem 1.25rem;
-    box-shadow: $il-shadow;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: none;
+    transition: background-color 0.18s ease, border-color 0.18s ease;
 
     &:hover:not(:disabled) {
-      transform: translateY(-1px);
-      box-shadow: $il-shadow-lg;
+      background: #1b3a70;
+      border-color: #1b3a70;
+      box-shadow: none;
       color: #fff;
     }
 
@@ -286,9 +287,9 @@
     margin-bottom: 1.1rem;
 
     &--error {
-      background: rgba(#dc4c64, 0.08);
+      background: rgba(#b3564e, 0.08);
       color: #8f2c40;
-      border: 1px solid rgba(#dc4c64, 0.25);
+      border: 1px solid rgba(#b3564e, 0.25);
     }
 
     &--info {
@@ -320,7 +321,7 @@
     border: 0;
     background: $il-ink;
     color: #fff;
-    border-radius: 999px;
+    border-radius: $il-radius-sm;
     font-size: 0.78rem;
     font-weight: 700;
     padding: 0.4rem 0.8rem;
@@ -350,7 +351,7 @@
 
   &__social-btn {
     border: 1px solid $il-line;
-    border-radius: 999px;
+    border-radius: $il-radius-sm;
     font-size: 0.88rem;
     font-weight: 600;
     color: $il-ink;

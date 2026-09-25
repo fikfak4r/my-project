@@ -1,43 +1,44 @@
 @use 'sass:map';
 // ─────────────────────────────────────────────────────────────
 // Infutia Learn — Design Tokens
-// Premium, elegant, mobile-first. Fonts: Fraunces (display),
-// Plus Jakarta Sans (body), JetBrains Mono (code).
+// Clean · Elegant · Mature. Flat surfaces, hairline borders,
+// restrained blue accents. Fonts: Libre Baskerville (display),
+// Inter (body), IBM Plex Mono (code). Mobile-first.
 // ─────────────────────────────────────────────────────────────
 
-// Brand palette
-$il-primary: #7c5cff;        // Infusion violet
-$il-primary-deep: #4f33cc;
-$il-accent: #ff6ec7;         // Electric rose
-$il-gold: #ffb347;           // Warm highlight
-$il-teal: #2dd4bf;
-$il-ink: #17131f;            // Near-black plum ink
-$il-ink-soft: #5c5470;
-$il-mist: #faf9ff;           // Page background
-$il-line: #ece8f7;           // Hairlines
+// Brand palette — calm, editorial blue
+$il-primary: #2f5aa8;        // Slate blue accent
+$il-primary-deep: #234687;   // Deep link blue
+$il-accent: #4a7bc8;         // Lighter steel blue
+$il-gold: #b08d4f;           // Muted brass (ratings only)
+$il-teal: #3e7c8c;           // Muted petrol (secondary tint)
+$il-ink: #1f2937;            // Charcoal ink
+$il-ink-soft: #5f6b7a;       // Cool grey copy
+$il-mist: #f7f8fa;           // Page background
+$il-line: #e5e8ec;           // Hairlines
 $il-surface: #ffffff;
 
 // Surfaces
-$il-night: #17131f;          // dark section background
+$il-night: #1c2532;          // Dark section background (navy charcoal)
 
-// Gradients
-$il-gradient-brand: linear-gradient(120deg, #7c5cff 0%, #a78bfa 45%, #ff6ec7 100%);
-$il-gradient-warm: linear-gradient(120deg, #ffb347, #ff7846);
-$il-gradient-night: linear-gradient(160deg, #17131f 0%, #241b3a 60%, #2d1e4f 100%);
+// Gradients — flat by default; these are near-neutral for legacy uses
+$il-gradient-brand: linear-gradient(120deg, #2f5aa8, #2f5aa8); // flat — kept for API compatibility
+$il-gradient-warm: linear-gradient(120deg, #b08d4f, #9a7a43);
+$il-gradient-night: linear-gradient(160deg, #1c2532 0%, #202b3b 60%, #243144 100%);
 
 // Typography
-$il-font-display: 'Fraunces', 'Playfair Display', Georgia, serif;
-$il-font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-$il-font-mono: 'JetBrains Mono', ui-monospace, monospace;
+$il-font-display: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+$il-font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+$il-font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 
-// Shape & depth
-$il-radius-sm: 10px;
-$il-radius: 16px;
-$il-radius-lg: 24px;
-$il-radius-xl: 32px;
-$il-shadow-sm: 0 2px 10px rgba(23, 19, 31, 0.06);
-$il-shadow: 0 12px 32px rgba(79, 51, 204, 0.12);
-$il-shadow-lg: 0 24px 60px rgba(79, 51, 204, 0.18);
+// Shape & depth — smaller radii, whisper-quiet shadows
+$il-radius-sm: 6px;
+$il-radius: 8px;
+$il-radius-lg: 12px;
+$il-radius-xl: 16px;
+$il-shadow-sm: 0 1px 2px rgba(31, 41, 55, 0.04);
+$il-shadow: 0 6px 18px rgba(31, 41, 55, 0.07);
+$il-shadow-lg: 0 14px 40px rgba(31, 41, 55, 0.1);
 
 // Breakpoints (mobile-first)
 $il-md: 768px;

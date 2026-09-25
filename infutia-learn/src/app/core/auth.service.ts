@@ -68,8 +68,8 @@ export class AuthService {
       handle: form.name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '.'),
       email: normalized,
       initials: form.name.trim().split(/\s+/).map((p) => p[0]).join('').slice(0, 2).toUpperCase(),
-      avatarFrom: '#7c5cff',
-      avatarTo: '#ff6ec7',
+      avatarFrom: '#2f5aa8',
+      avatarTo: '#4a7bc8',
     });
     this.persist();
     return { ok: true };
@@ -130,7 +130,7 @@ export class AuthService {
         avatarTo: author.avatarTo,
       };
     }
-    return { authorId, name: email, handle: email.split('@')[0], email, initials: 'IL', avatarFrom: '#7c5cff', avatarTo: '#ff6ec7' };
+    return { authorId, name: email, handle: email.split('@')[0], email, initials: 'IL', avatarFrom: '#2f5aa8', avatarTo: '#4a7bc8' };
   }
 
   private restore(): SessionUser | null {
