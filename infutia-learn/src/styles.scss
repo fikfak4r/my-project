@@ -3,13 +3,13 @@
    Premium · Elegant · Mobile-first
    Bootstrap 5 + Google Fonts (Fraunces / Plus Jakarta Sans / JetBrains Mono)
    ───────────────────────────────────────────────────────────── */
-$primary: #7c5cff;
-$font-family-sans-serif: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-
-@import 'bootstrap/scss/bootstrap';
-@import 'bootstrap-icons/font/bootstrap-icons.css';
-@import './styles/tokens';
-@import './styles/il-markdown';
+@use 'bootstrap/scss/bootstrap' with (
+  $primary: #7c5cff,
+  $font-family-sans-serif: ('Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif)
+);
+@use 'bootstrap-icons/font/bootstrap-icons.css';
+@use './styles/tokens' as *;
+@use './styles/il-markdown' as *;
 
 html { scroll-behavior: smooth; }
 

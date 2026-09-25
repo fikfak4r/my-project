@@ -1,0 +1,309 @@
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero position-relative overflow-hidden">
+  <span class="il-aurora hero__blob-1"></span>
+  <span class="il-aurora hero__blob-2"></span>
+
+  <div class="container position-relative">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 text-center text-lg-start">
+        <span class="il-eyebrow"><i class="bi bi-stars"></i> The home of digital products</span>
+        <h1 class="hero__title">
+          Write in Markdown.<br />
+          Publish in <span class="il-grad-text">pure magic.</span>
+        </h1>
+        <p class="il-lead hero__lead mx-auto mx-lg-0">
+          Infutia Learn turns simple Markdown into captivating ebooks, courses and guides —
+          served in a reading experience so smooth your readers never want to leave.
+          No website. No downloads. No pirated PDFs.
+        </p>
+        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start mt-4">
+          <a routerLink="/become-author" class="btn btn-il-primary btn-il-primary--lg">
+            <i class="bi bi-feather me-2"></i>Start writing free
+          </a>
+          <a routerLink="/courses" class="btn btn-il-ghost btn-lg">
+            Browse the library
+          </a>
+        </div>
+        <div class="d-flex flex-wrap gap-4 justify-content-center justify-content-lg-start mt-4 hero__trust">
+          <span><i class="bi bi-check-circle-fill text-success me-1"></i>Free to publish</span>
+          <span><i class="bi bi-check-circle-fill text-success me-1"></i>PDF &amp; Word import</span>
+          <span><i class="bi bi-check-circle-fill text-success me-1"></i>Piracy-proof reader</span>
+        </div>
+      </div>
+
+      <!-- Reader-window mock -->
+      <div class="col-lg-6">
+        <div class="hero__mock mx-auto">
+          <div class="mock-window">
+            <div class="mock-window__bar">
+              <span></span><span></span><span></span>
+              <em>infutia.app/read/writers-edge</em>
+            </div>
+            <div class="mock-window__body il-markdown" [innerHTML]="demoHtml"></div>
+            <div class="mock-window__progress"><span></span></div>
+          </div>
+          <span class="float-chip float-chip--1"><i class="bi bi-bookmark-star-fill text-warning me-2"></i>Bookmarked</span>
+          <span class="float-chip float-chip--2"><i class="bi bi-highlighter me-2" style="color:#ff6ec7"></i>Highlighted</span>
+          <span class="float-chip float-chip--3"><i class="bi bi-moon-stars-fill" style="color:#7c5cff"></i><span class="ms-2">Night mode</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ STATS ═══════════ -->
+<section class="stats">
+  <div class="container">
+    <div class="row text-center g-4">
+      <div class="col-6 col-md-3">
+        <div class="stats__num">40k+</div>
+        <div class="stats__label">Readers hooked</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stats__num">1,200+</div>
+        <div class="stats__label">Digital products published</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stats__num">92%</div>
+        <div class="stats__label">Chapter completion rate</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stats__num">0</div>
+        <div class="stats__label">Downloads needed — ever</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BENEFITS (Reader / Author lens) ═══════════ -->
+<section class="il-section">
+  <div class="container">
+    <div class="text-center mb-5 il-reveal">
+      <span class="il-eyebrow"><i class="bi bi-heart"></i> Built around two people</span>
+      <h2 class="il-title">One platform, <span class="il-grad-text">two superpowers</span></h2>
+      <p class="il-lead mx-auto">Everything we build answers one question: does it make learning a
+        bliss for readers, or a business for authors?</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-6 il-reveal">
+        <article class="benefit benefit--reader h-100">
+          <span class="benefit__icon"><i class="bi bi-binoculars-fill"></i></span>
+          <div class="benefit__tag">For Readers &amp; Learners</div>
+          <h3>A reading experience you'll stay glued to</h3>
+          <ul>
+            <li><i class="bi bi-check-circle-fill"></i>State-of-the-art renderer with smooth, breath-taking navigation</li>
+            <li><i class="bi bi-check-circle-fill"></i>Bookmarks, highlights &amp; annotations that follow you everywhere</li>
+            <li><i class="bi bi-check-circle-fill"></i>Eye-comfy Daylight, Sepia &amp; Midnight themes with custom look and feel</li>
+            <li><i class="bi bi-check-circle-fill"></i>Easy chapter jumps and progress that motivates you to finish</li>
+            <li><i class="bi bi-check-circle-fill"></i>No downloads, no files, no clutter — just open a link and read</li>
+          </ul>
+          <a routerLink="/read/writers-edge" class="benefit__link">Try the live reader <i class="bi bi-arrow-right"></i></a>
+        </article>
+      </div>
+
+      <div class="col-lg-6 il-reveal">
+        <article class="benefit benefit--author h-100">
+          <span class="benefit__icon"><i class="bi bi-pen-fill"></i></span>
+          <div class="benefit__tag">For Authors</div>
+          <h3>Your knowledge business, minus the plumbing</h3>
+          <ul>
+            <li><i class="bi bi-check-circle-fill"></i>Simple Markdown syntax that brings products alive — no design skills needed</li>
+            <li><i class="bi bi-check-circle-fill"></i>Convert existing PDF &amp; Word documents in minutes</li>
+            <li><i class="bi bi-check-circle-fill"></i>No website to build, host or babysit — we are your storefront</li>
+            <li><i class="bi bi-check-circle-fill"></i>Piracy-proof streaming: nothing is downloadable or re-shareable</li>
+            <li><i class="bi bi-check-circle-fill"></i>Go public on your terms, gain followers and build a community</li>
+          </ul>
+          <a routerLink="/become-author" class="benefit__link">Become an author <i class="bi bi-arrow-right"></i></a>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ STUDIO DEMO ═══════════ -->
+<section class="studio-strip il-section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5 il-reveal">
+        <span class="il-eyebrow"><i class="bi bi-magic"></i> Infutia Markdown</span>
+        <h2 class="il-title">Plain words.<br /><span class="il-grad-text">Extraordinary output.</span></h2>
+        <p class="il-lead">You already know Markdown. We added a handful of human symbols that turn
+          lessons into experiences — callouts, golden highlights and takeaway chips.</p>
+        <ul class="syntax-list">
+          @for (s of syntaxHelp; track s.code) {
+            <li><code>{{ s.code }}</code><span>{{ s.what }}</span></li>
+          }
+        </ul>
+      </div>
+
+      <div class="col-lg-7 il-reveal">
+        <div class="studio-demo">
+          <div class="studio-demo__tabs" role="tablist">
+            @for (t of tabs; track t) {
+              <button
+                class="studio-demo__tab"
+                [class.is-active]="activeTab() === t"
+                role="tab"
+                [attr.aria-selected]="activeTab() === t"
+                (click)="setTab(t)">
+                @if (t === 'Write') { <i class="bi bi-code-slash me-1"></i> }
+                @if (t === 'Infuse') { <i class="bi bi-flask me-1"></i> }
+                @if (t === 'Shine') { <i class="bi bi-sun me-1"></i> }
+                {{ t }}
+              </button>
+            }
+          </div>
+
+          @if (activeTab() !== 'Shine') {
+            <pre class="studio-demo__code" [class.d-none]="activeTab() === 'Shine'"><code>{{ demoSource }}</code></pre>
+          }
+          @if (activeTab() === 'Shine' || activeTab() === 'Infuse') {
+            <div class="studio-demo__render il-markdown" [innerHTML]="demoHtml"></div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ STEPS ═══════════ -->
+<section class="steps-strip il-section">
+  <div class="container">
+    <div class="text-center mb-5 il-reveal">
+      <span class="il-eyebrow"><i class="bi bi-signpost-split"></i> How it works</span>
+      <h2 class="il-title">From idea to income in <span class="il-grad-text">four steps</span></h2>
+    </div>
+    <div class="row g-4 g-lg-5 pt-2">
+      <div class="col-sm-6 col-lg-3 il-reveal">
+        <div class="step h-100">
+          <span class="step__n">1</span>
+          <i class="bi bi-file-earmark-text step__icon"></i>
+          <h4>Write or import</h4>
+          <p>Draft in Infutia Markdown, or convert your existing PDF and Word documents in one click.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 il-reveal">
+        <div class="step h-100">
+          <span class="step__n">2</span>
+          <i class="bi bi-wand-magic-sparkles step__icon"></i>
+          <h4>Infuse life</h4>
+          <p>Add callouts, highlights and takeaways. Preview instantly in the premium reader.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 il-reveal">
+        <div class="step h-100">
+          <span class="step__n">3</span>
+          <i class="bi bi-rocket-takeoff step__icon"></i>
+          <h4>Publish</h4>
+          <p>Your product appears on the Courses page. Your profile goes public — only if you choose.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3 il-reveal">
+        <div class="step h-100">
+          <span class="step__n">4</span>
+          <i class="bi bi-people step__icon"></i>
+          <h4>Grow a community</h4>
+          <p>Gain followers, engage them at every launch and turn readers into superfans.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FEATURED PRODUCTS ═══════════ -->
+<section class="il-section">
+  <div class="container">
+    <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4 il-reveal">
+      <div>
+        <span class="il-eyebrow"><i class="bi bi-fire text-danger"></i> Just published</span>
+        <h2 class="il-title mb-1">Trending on the shelf</h2>
+        <p class="il-lead mb-0">Digital products appear here the moment authors hit publish.</p>
+      </div>
+      <a routerLink="/courses" class="btn btn-il-ghost">All courses <i class="bi bi-arrow-right ms-1"></i></a>
+    </div>
+    <div class="row g-4">
+      @for (p of featured; track p.id) {
+        <div class="col-6 col-lg-3 il-reveal">
+          <app-product-card [product]="p"></app-product-card>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ AUTHORS ═══════════ -->
+<section class="il-section" style="background: linear-gradient(180deg, #fff, #f6f3ff);">
+  <div class="container">
+    <div class="text-center mb-5 il-reveal">
+      <span class="il-eyebrow"><i class="bi bi-person-badge"></i> Meet the minds</span>
+      <h2 class="il-title">Authors with <span class="il-grad-text">communities</span></h2>
+      <p class="il-lead mx-auto">Publish one product, opt in, and your profile opens to the world —
+        followers, activity and all.</p>
+    </div>
+    <div class="row g-4 justify-content-center">
+      @for (a of topAuthors; track a.id) {
+        <div class="col-6 col-lg-3 il-reveal">
+          <a class="author-card h-100" [routerLink]="['/authors', a.id]">
+            <span class="il-avatar il-avatar--lg mb-3" [style.background]="'linear-gradient(135deg,' + a.avatarFrom + ',' + a.avatarTo + ')'">{{ a.initials }}</span>
+            <h4>{{ a.name }}</h4>
+            <div class="author-card__role">{{ a.role }}</div>
+            <p class="author-card__bio">{{ a.bio }}</p>
+            <div class="author-card__meta mt-3">
+              <span><i class="bi bi-people-fill"></i>{{ data.fmt(a.followers) }}</span>
+              <span><i class="bi bi-journal-bookmark-fill"></i>{{ a.products }} products</span>
+            </div>
+          </a>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TESTIMONIALS ═══════════ -->
+<section class="voices il-section">
+  <div class="container">
+    <div class="text-center mb-5 il-reveal">
+      <span class="il-eyebrow"><i class="bi bi-chat-quote"></i> Voices</span>
+      <h2 class="il-title">Bliss, <span class="il-grad-text">all the way</span></h2>
+    </div>
+    <div class="row g-4">
+      @for (v of data.testimonials; track v.name) {
+        <div class="col-sm-6 col-lg-3 il-reveal">
+          <figure class="voice h-100">
+            <i class="bi bi-quote voice__mark"></i>
+            <blockquote>{{ v.quote }}</blockquote>
+            <figcaption>
+              <span class="il-avatar il-avatar--sm" [style.background]="v.color">{{ v.initials }}</span>
+              <span><strong>{{ v.name }}</strong><small>{{ v.role }}</small></span>
+            </figcaption>
+          </figure>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FINAL CTA ═══════════ -->
+<section class="cta-final">
+  <div class="container">
+    <div class="cta-final__card il-reveal">
+      <span class="il-aurora cta-final__glow"></span>
+      <div class="position-relative">
+        <h2 class="il-title text-white">This is the home of<br />digital products.</h2>
+        <p class="cta-final__sub mx-auto">
+          Write it in Markdown. We'll make it shine. Your readers will never want to close the tab.
+        </p>
+        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center mt-4">
+          <a routerLink="/become-author" class="btn btn-il-light btn-lg">
+            <i class="bi bi-feather me-2"></i>Publish your first product
+          </a>
+          <a routerLink="/how-it-works" class="btn btn-il-ghost btn-lg text-white border-0" style="border-color: rgba(255,255,255,.35) !important; color:#fff !important;">
+            See how it works
+          </a>
+        </div>
+        <span class="cta-final__note">Free to start · Go public only when you're ready</span>
+      </div>
+    </div>
+  </div>
+</section>
