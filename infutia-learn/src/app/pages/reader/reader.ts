@@ -3,6 +3,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { DataService } from '../../core/data.service';
 import { MarkdownService } from '../../core/markdown.service';
+import { Author, Product } from '../../core/models';
 
 type Theme = 'light' | 'sepia' | 'midnight';
 
@@ -13,10 +14,13 @@ type Theme = 'light' | 'sepia' | 'midnight';
   styleUrl: './reader.scss',
 })
 export class Reader {
-  constructor(private data: DataService, private md: MarkdownService, private sanitizer: DomSanitizer) {}
+  product!: Product;
+  author!: Author;
 
-  product = this.data.product('writers-edge')!;
-  author = this.data.author(this.product.authorId);
+  constructor(private data: DataService, private md: MarkdownService, private sanitizer: DomSanitizer) {
+    this.product = this.data.product('writers-edge')!;
+    this.author = this.data.author(this.product.authorId);
+  }
 
   theme = signal<Theme>('light');
   fontScale = signal(100); // percent

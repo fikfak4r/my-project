@@ -35,4 +35,19 @@ export class Home {
   setTab(t: (typeof this.tabs)[number]) {
     this.activeTab.set(t);
   }
+
+  /** Raw markdown shown in the "Write" code tab */
+  get demoSource(): string {
+    return this.data.demoMarkdown;
+  }
+
+  /** Trending & newly published products for the shelf */
+  get featured() {
+    return this.data.products.filter(p => p.trending || p.new).slice(0, 4);
+  }
+
+  /** Top authors by followers */
+  get topAuthors() {
+    return [...this.data.authors].sort((a, b) => b.followers - a.followers).slice(0, 4);
+  }
 }

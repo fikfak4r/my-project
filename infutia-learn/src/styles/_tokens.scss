@@ -1,3 +1,4 @@
+@use 'sass:map';
 // ─────────────────────────────────────────────────────────────
 // Infutia Learn — Design Tokens
 // Premium, elegant, mobile-first. Fonts: Fraunces (display),
@@ -44,7 +45,7 @@ $il-lg: 992px;
 $il-xl: 1200px;
 
 @function il-width($bp) {
-  @return map-get((md: $il-md, lg: $il-lg, xl: $il-xl), $bp);
+  @return map.get((md: $il-md, lg: $il-lg, xl: $il-xl), $bp);
 }
 
 @mixin il-up($bp) {
